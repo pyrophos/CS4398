@@ -1,4 +1,4 @@
-package com.passwordGen;
+package com.example.wwjdt.passphrasegenerator;
 
 public class CredentialOptions
 {

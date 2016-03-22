@@ -1,4 +1,4 @@
-package com.passwordGen;
+package com.example.wwjdt.passphrasegenerator;
 
 import java.util.ArrayList;
 import java.util.UUID;
