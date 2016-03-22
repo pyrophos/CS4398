@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 public class CredentialModel
 {
-  private final ArrayList<String> credentialList = new ArrayList<String>();
+  private final ArrayList<String> credentialList = new ArrayList<>();
 
   /**
    * Loads data into the list of credentials.
@@ -17,7 +17,7 @@ public class CredentialModel
    */
   public void loadData()
   {
-
+    String mystring = "hello";
   }
 
   /**
@@ -54,7 +54,7 @@ public class CredentialModel
   /**
    * A random credential string.
    *
-   * @return
+   * @return The credential to return.
    */
   private String randomcredential()
   {
