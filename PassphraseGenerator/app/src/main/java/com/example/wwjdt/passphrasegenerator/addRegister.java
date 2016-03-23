@@ -13,12 +13,11 @@ import android.widget.Toast;
 import com.example.wwjdt.utils.Constants;
 
 public class addRegister extends AppCompatActivity implements View.OnClickListener {
-
     private Button registerButton, backButton;
     private EditText editUsername, editPassword, textView;
     private static final String MyPREFERENCES= "MyPrefs";
     SharedPreferences pref;
-
+    //test commit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
