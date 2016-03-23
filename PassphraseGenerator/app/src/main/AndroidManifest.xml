@@ -24,7 +24,8 @@
         <activity
             android:name=".addRegister"
             android:label="@string/title_activity_add_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".addPassword"></activity>
     </application>
 
 </manifest>
