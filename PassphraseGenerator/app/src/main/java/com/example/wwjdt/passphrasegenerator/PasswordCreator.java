@@ -48,4 +48,26 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             case R.id.exitBtn: break;
         }
     }
+
+    public void generatePassword(){
+        Credential credential = new Credential(Integer.valueOf(maxChar.getText()),
+                                               Integer.valueOf(minChar.getText()),
+                                               Integer.valueOf(maxWords.getText()),
+                                               Integer.valueOf(minWords.getText()));
+        WordModel wordModel = new WordModel();
+
+        if(caseSensitive.isChecked()){
+
+        }
+
+        if(alphanumeric.isChecked()){
+
+        }
+
+        if(specialCharacters.isChecked()){
+
+        }
+    }
 }
+
+
