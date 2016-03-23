@@ -4,24 +4,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class addPassword extends AppCompatActivity implements View.OnClickListener{
-    private RadioButton caseSensitive, alphanumeric, specialCharacters;
+    private CheckBox caseSensitive, alphanumeric, specialCharacters;
     private Button saveBtn, exitBtn, generateBtn;
-    private EditText passwordName, minChar, maxChar;
+    private EditText passwordName, minChar, maxChar, minWords, maxWords;
     private TextView passwordDisplay;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_password);
-        //Radio Buttons
-        caseSensitive = (RadioButton) findViewById(R.id.caseSensitive);
-        alphanumeric = (RadioButton) findViewById(R.id.alphanumeric);
-        specialCharacters = (RadioButton) findViewById(R.id.specialCharacters);
+        //CheckBoxes
+        caseSensitive = (CheckBox) findViewById(R.id.caseSensitive);
+        alphanumeric = (CheckBox) findViewById(R.id.alphanumeric);
+        specialCharacters = (CheckBox) findViewById(R.id.specialCharacters);
         //Buttons
         saveBtn = (Button) findViewById(R.id.saveBtn);
         exitBtn = (Button) findViewById(R.id.exitBtn);
@@ -30,7 +33,19 @@ public class addPassword extends AppCompatActivity implements View.OnClickListen
         passwordName = (EditText) findViewById(R.id.passwordName);
         minChar = (EditText) findViewById(R.id.minChar);
         maxChar = (EditText) findViewById(R.id.maxChar);
+        minWords = (EditText) findViewById(R.id.minWords);
+        maxWords = (EditText) findViewById(R.id.maxWords);
         //Text Display
         passwordDisplay = (TextView) findViewById(R.id.passwordDisplay);
+
+
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.generateBtn: break;
+            case R.id.saveBtn: break;
+            case R.id.exitBtn: break;
+        }
     }
 }
