@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class addPassword extends AppCompatActivity implements View.OnClickListener{
+public class PasswordCreator extends AppCompatActivity implements View.OnClickListener{
     private CheckBox caseSensitive, alphanumeric, specialCharacters;
     private Button saveBtn, exitBtn, generateBtn;
     private EditText passwordName, minChar, maxChar, minWords, maxWords;
