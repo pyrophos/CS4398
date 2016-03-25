@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class PasswordCreator extends AppCompatActivity implements View.OnClickListener{
     private CheckBox caseSensitive, alphanumeric, specialCharacters;
-    private Button saveBtn, exitBtn, generateBtn;
+    private Button saveBtn, exitBtn, generateBtn, shuffleBtn;
     private EditText passwordName, minChar, maxChar, minWords, maxWords;
     private TextView passwordDisplay;
 
@@ -29,6 +29,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         saveBtn = (Button) findViewById(R.id.saveBtn);
         exitBtn = (Button) findViewById(R.id.exitBtn);
         generateBtn = (Button) findViewById(R.id.generateBtn);
+        shuffleBtn = (Button) findViewById(R.id.shuffleBtn);
         //Edit Text Fields
         passwordName = (EditText) findViewById(R.id.passwordName);
         minChar = (EditText) findViewById(R.id.minChar);
@@ -37,20 +38,23 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         maxWords = (EditText) findViewById(R.id.maxWords);
         //Text Display
         passwordDisplay = (TextView) findViewById(R.id.passwordDisplay);
-
-
     }
 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.generateBtn: break;
+            case R.id.shuffleBtn: break;
             case R.id.saveBtn: break;
             case R.id.exitBtn: break;
         }
     }
 
     public void generatePassword(){
-        
+         Credential credential = new Credential(Integer.parseInt(maxChar.getText().toString()),
+                                                Integer.parseInt(minChar.getText().toString()),
+                                                Integer.parseInt(maxWords.getText().toString()),
+                                                Integer.parseInt(minWords.getText().toString()));
+
         if(caseSensitive.isChecked()){
 
         }

@@ -1,6 +1,7 @@
 package com.example.wwjdt.passphrasegenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Credential
 {
@@ -29,10 +30,10 @@ public class Credential
    * @param minWords      The minimum number of words the credential should
    *                      contain.
    */
-  public void Credential(final int maxCharacters,
-                         final int minCharacters,
-                         final int maxWords,
-                         final int minWords)
+  public Credential(final int maxCharacters,
+                    final int minCharacters,
+                    final int maxWords,
+                    final int minWords)
   {
     this.maxCharacters = maxCharacters;
     this.minCharacters = minCharacters;
@@ -44,16 +45,13 @@ public class Credential
    *
    * @param word
    */
-  public void addWord(final Word word)
-  {
-    if (credential.size() <= maxWords)
-    {
-      credential.add(word);
-    }
+  public void addWord(final Word word){
+      if (credential.size() <= maxWords){
+          credential.add(word);
+      }
   }
 
-  public void addRandomWord()
-  {
+  public void addRandomWord(){
 
   }
 
@@ -62,9 +60,8 @@ public class Credential
    *
    * @return  The number of words within the credential.
    */
-  public int getNumWords()
-  {
-    return credential.size();
+  public int getNumWords(){
+      return credential.size();
   }
 
   /**
@@ -160,6 +157,13 @@ public class Credential
   public void setMinCharacters(final int minCharacters)
   {
     this.minCharacters = minCharacters;
+  }
+
+  /**
+   * Shuffles the words that make up the credential.
+   */
+  public void shuffleCredential(){
+      Collections.shuffle(credential);
   }
 
 }
