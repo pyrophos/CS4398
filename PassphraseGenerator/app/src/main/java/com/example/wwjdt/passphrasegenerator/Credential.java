@@ -58,6 +58,12 @@ public class Credential
       return credentialString;
   }
 
+  public void makeCaseSensitive(){
+      for(int i = 0; i < numWords; i++){
+          credential.get(i).capitalize();
+      }
+  }
+
 
   /**
    * Gets the current number of words in the credential.

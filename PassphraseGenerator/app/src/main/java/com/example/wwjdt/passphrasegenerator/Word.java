@@ -27,6 +27,14 @@ public class Word
    */
   public String getWord(){return this.word;}
 
+    /**
+     * Capitalize the first letter of the word
+     *
+     */
+    public void capitalize(){
+        word = word.substring(0,1).toUpperCase() + word.substring(1);
+    }
+
 
   /**
    * Updates the word object with a new string.

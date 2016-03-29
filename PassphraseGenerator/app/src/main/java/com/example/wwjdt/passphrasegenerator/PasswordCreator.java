@@ -65,7 +65,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         }
 
         if(caseSensitive.isChecked()){
-
+            credential.makeCaseSensitive();
         }
 
         if(alphanumeric.isChecked()){

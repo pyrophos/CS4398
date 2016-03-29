@@ -19,7 +19,7 @@ public class WordModel
    */
   public WordModel()
   {
-    String[] names = { "Terminator", "Slicer", "Ninja", "cow", "Robot", "Dog" };
+    String[] names = { "terminator", "slicer", "ninja", "cow", "robot", "dog" };
     for (String n : names)
     {
       wordList.add(n);
