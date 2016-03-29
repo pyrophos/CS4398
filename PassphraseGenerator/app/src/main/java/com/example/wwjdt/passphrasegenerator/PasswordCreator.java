@@ -75,7 +75,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         if(specialCharacters.isChecked()){
 
         }
-        passwordDisplay.setText(credential);
+        passwordDisplay.setText(credential.toString());
     }
 }
 
