@@ -2,6 +2,7 @@ package com.example.wwjdt.passphrasegenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Credential
 {
@@ -52,7 +53,7 @@ public class Credential
   @Override
   public String toString(){
       String credentialString = new String();
-      for(int i = 0; i < numWords; i++){
+      for(int i = 0; i < credential.size(); i++){
           credentialString += credential.get(i).getWord();
       }
       return credentialString;
@@ -63,6 +64,23 @@ public class Credential
           credential.get(i).capitalize();
       }
   }
+
+    public void appendSpecialCharacter(){
+        final String specialCharacters = "@#+\\/'!#$^?:.(){}[]~-_";
+        Random rand = new Random();
+
+        String randSpecialCharacter = Character.toString(specialCharacters.charAt(rand.nextInt(specialCharacters.length())));
+        Word word = new Word(randSpecialCharacter);
+        credential.add(word);
+    }
+
+    public void appendNumber(){
+        Random rand = new Random();
+        String randNumber = Integer.toString(rand.nextInt(9)+1);
+
+        Word word = new Word(randNumber);
+        credential.add(word);
+    }
 
 
   /**

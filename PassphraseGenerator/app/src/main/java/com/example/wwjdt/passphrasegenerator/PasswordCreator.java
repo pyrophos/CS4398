@@ -69,11 +69,11 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         }
 
         if(alphanumeric.isChecked()){
-
+            credential.appendNumber();
         }
 
         if(specialCharacters.isChecked()){
-
+            credential.appendSpecialCharacter();
         }
         passwordDisplay.setText(credential.toString());
     }
