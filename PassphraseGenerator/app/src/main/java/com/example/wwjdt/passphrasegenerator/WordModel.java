@@ -17,7 +17,7 @@ public class WordModel
    * Loads data into the list of words.
    * This will be replaced once we get sqlite going.
    */
-  public void loadData()
+  public WordModel()
   {
     String[] names = { "Terminator", "Slicer", "Ninja", "cow", "Robot", "Dog" };
     for (String n : names)
@@ -45,7 +45,7 @@ public class WordModel
   {
     final int lowerBound = 0;
     final int upperBound = wordList.size();
-    int random_integer = rand.nextInt(upperBound - lowerBound) + lowerBound;
+    int random_integer = rand.nextInt(upperBound);
     return wordList.get(random_integer);
   }
 

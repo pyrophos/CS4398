@@ -6,16 +6,20 @@ import java.util.Collections;
 public class Credential
 {
   // Container for the words
-  private ArrayList<Word> credential;
+  private ArrayList<Word> credential = new ArrayList<Word>();
 
   // Limits on number of words
   private int maxWords;
   private int minWords;
+  private int numWords;
 
   // Limits on number of characters
   private int maxCharacters;
   private int minCharacters;
+  private int numCharacters;
   private int totalCharacters;
+
+  WordModel wordModel = new WordModel();
 
 
   /**
@@ -30,33 +34,33 @@ public class Credential
    * @param minWords      The minimum number of words the credential should
    *                      contain.
    */
-  public Credential(final int maxCharacters,
-                    final int minCharacters,
-                    final int maxWords,
-                    final int minWords)
+  public Credential(final int numWords,
+                    final int numCharacters)
   {
-    this.maxCharacters = maxCharacters;
-    this.minCharacters = minCharacters;
-    this.maxWords = maxWords;
-    this.minWords = minWords;
+    this.numCharacters = numCharacters;
+    this.numWords = numWords;
   }
 
   /**
-   *
-   * @param word
+   * Add random word to credential
    */
-  public void addWord(final Word word){
-      if (credential.size() <= maxWords){
-          credential.add(word);
+  public void addWord(){
+      Word word = new Word(wordModel.getRandomWord());
+      credential.add(word);
+  }
+
+  @Override
+  public String toString(){
+      String credentialString = new String();
+      for(int i = 0; i < numWords; i++){
+          credentialString += credential.get(i).getWord();
       }
+      return credentialString;
   }
 
-  public void addRandomWord(){
-
-  }
 
   /**
-   * Gets the currenty number of words in the credential.
+   * Gets the current number of words in the credential.
    *
    * @return  The number of words within the credential.
    */

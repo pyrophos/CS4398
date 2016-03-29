@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class PasswordCreator extends AppCompatActivity implements View.OnClickListener{
     private CheckBox caseSensitive, alphanumeric, specialCharacters;
     private Button saveBtn, exitBtn, generateBtn, shuffleBtn;
@@ -38,11 +40,14 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         maxWords = (EditText) findViewById(R.id.maxWords);
         //Text Display
         passwordDisplay = (TextView) findViewById(R.id.passwordDisplay);
+
+        generateBtn.setOnClickListener(this);
     }
 
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.generateBtn: break;
+            case R.id.generateBtn: generatePassword(); break;
             case R.id.shuffleBtn: break;
             case R.id.saveBtn: break;
             case R.id.exitBtn: break;
@@ -50,10 +55,14 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     }
 
     public void generatePassword(){
-         Credential credential = new Credential(Integer.parseInt(maxChar.getText().toString()),
-                                                Integer.parseInt(minChar.getText().toString()),
-                                                Integer.parseInt(maxWords.getText().toString()),
-                                                Integer.parseInt(minWords.getText().toString()));
+        Random rand = new Random();
+        int numWords = rand.nextInt((Integer.parseInt(maxWords.getText().toString())-Integer.parseInt(minWords.getText().toString())) + 1) + Integer.parseInt(minWords.getText().toString());
+        int numCharacters = rand.nextInt((Integer.parseInt(maxChar.getText().toString())-Integer.parseInt(minChar.getText().toString())) + 1) + Integer.parseInt(minChar.getText().toString());
+        Credential credential = new Credential(numWords, numCharacters);
+
+        for(int i = 0; i < numWords; i++){
+            credential.addWord();
+        }
 
         if(caseSensitive.isChecked()){
 
@@ -66,6 +75,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         if(specialCharacters.isChecked()){
 
         }
+        passwordDisplay.setText(credential);
     }
 }
 

@@ -19,10 +19,14 @@ public class Word
    *
    * @param word  The string to place into the word object.
    */
-  private void setWord(String word)
-  {
-    this.word = word;
-  }
+  private void setWord(String word) {this.word = word;}
+
+  /**
+   * Returns word from word object
+   *
+   */
+  public String getWord(){return this.word;}
+
 
   /**
    * Updates the word object with a new string.
