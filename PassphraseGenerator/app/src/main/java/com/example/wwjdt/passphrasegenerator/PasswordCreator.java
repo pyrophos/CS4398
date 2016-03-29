@@ -16,6 +16,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private Button saveBtn, exitBtn, generateBtn, shuffleBtn;
     private EditText passwordName, minChar, maxChar, minWords, maxWords;
     private TextView passwordDisplay;
+    private Credential credential;
 
 
 
@@ -41,20 +42,24 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         //Text Display
         passwordDisplay = (TextView) findViewById(R.id.passwordDisplay);
 
+        //Set listeners for buttons
         generateBtn.setOnClickListener(this);
+        shuffleBtn.setOnClickListener(this);
+        saveBtn.setOnClickListener(this);
+        exitBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.generateBtn: generatePassword(); break;
-            case R.id.shuffleBtn: break;
+            case R.id.generateBtn: credential = generatePassword(); break;
+            case R.id.shuffleBtn: shuffle(); break;
             case R.id.saveBtn: break;
             case R.id.exitBtn: break;
         }
     }
 
-    public void generatePassword(){
+    public Credential generatePassword(){
         Random rand = new Random();
         int numWords = rand.nextInt((Integer.parseInt(maxWords.getText().toString())-Integer.parseInt(minWords.getText().toString())) + 1) + Integer.parseInt(minWords.getText().toString());
         int numCharacters = rand.nextInt((Integer.parseInt(maxChar.getText().toString())-Integer.parseInt(minChar.getText().toString())) + 1) + Integer.parseInt(minChar.getText().toString());
@@ -76,6 +81,15 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             credential.appendSpecialCharacter();
         }
         passwordDisplay.setText(credential.toString());
+
+        return credential;
+    }
+
+    public Credential shuffle(){
+        credential.shuffleCredential();
+        passwordDisplay.setText(credential.toString());
+
+        return credential;
     }
 }
 
