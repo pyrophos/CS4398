@@ -11,7 +11,7 @@ import java.util.UUID;
 public class WordModel
 {
   private final ArrayList<String> wordList = new ArrayList<String>();
-  Random rand = new Random();
+  Random rand = new Random(System.currentTimeMillis());
 
   /**
    * Loads data into the list of words.
@@ -41,11 +41,16 @@ public class WordModel
    *
    * @return  A word string.
    */
-  public String getRandomWord()
+  public String getRandomWord(int minChar, int maxChar)
   {
     final int lowerBound = 0;
     final int upperBound = wordList.size();
-    int random_integer = rand.nextInt(upperBound);
+    int random_integer;
+    String word;
+    do {
+      random_integer = rand.nextInt(upperBound);
+    }while((wordList.get(random_integer).length() > maxChar) || (wordList.get(random_integer).length() < minChar));
+
     return wordList.get(random_integer);
   }
 

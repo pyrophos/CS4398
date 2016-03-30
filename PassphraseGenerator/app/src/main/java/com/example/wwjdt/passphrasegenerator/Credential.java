@@ -30,15 +30,14 @@ public class Credential
    *                      should contain.
    * @param minCharacters The minimum number of characters the credential
    *                      should contain.
-   * @param maxWords      The maximum number of words the credential should
-   *                      contain.
-   * @param minWords      The minimum number of words the credential should
-   *                      contain.
+   * @param numWords      The number of words the credential should
+
    */
   public Credential(final int numWords,
-                    final int numCharacters)
+                    final int maxCharacters, final int minCharacters)
   {
-    this.numCharacters = numCharacters;
+    this.minCharacters = minCharacters;
+    this.maxCharacters = maxCharacters;
     this.numWords = numWords;
   }
 
@@ -46,7 +45,7 @@ public class Credential
    * Add random word to credential
    */
   public void addWord(){
-      Word word = new Word(wordModel.getRandomWord());
+      Word word = new Word(wordModel.getRandomWord(minCharacters, maxCharacters));
       credential.add(word);
   }
 
@@ -60,7 +59,7 @@ public class Credential
   }
 
   public void makeCaseSensitive(){
-      for(int i = 0; i < numWords; i++){
+      for(int i = 0; i < credential.size(); i++){
           credential.get(i).capitalize();
       }
   }
@@ -68,7 +67,6 @@ public class Credential
     public void appendSpecialCharacter(){
         final String specialCharacters = "@#+\\/'!#$^?:.(){}[]~-_";
         Random rand = new Random();
-
         String randSpecialCharacter = Character.toString(specialCharacters.charAt(rand.nextInt(specialCharacters.length())));
         Word word = new Word(randSpecialCharacter);
         credential.add(word);
@@ -77,7 +75,6 @@ public class Credential
     public void appendNumber(){
         Random rand = new Random();
         String randNumber = Integer.toString(rand.nextInt(9)+1);
-
         Word word = new Word(randNumber);
         credential.add(word);
     }
