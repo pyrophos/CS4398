@@ -19,6 +19,10 @@ public class Credential
   private int minCharacters;
   private int numCharacters;
   private int totalCharacters;
+  private int strengthTotal;
+  private boolean hasNumbers;
+  private boolean hasSpecialChars;
+  private boolean hasUpperCaseChars;
 
   WordModel wordModel = new WordModel();
 
@@ -39,6 +43,7 @@ public class Credential
     this.minCharacters = minCharacters;
     this.maxCharacters = maxCharacters;
     this.numWords = numWords;
+
   }
 
   /**
@@ -64,20 +69,20 @@ public class Credential
       }
   }
 
-    public void appendSpecialCharacter(){
-        final String specialCharacters = "@#+\\/'!#$^?:.(){}[]~-_";
-        Random rand = new Random();
-        String randSpecialCharacter = Character.toString(specialCharacters.charAt(rand.nextInt(specialCharacters.length())));
-        Word word = new Word(randSpecialCharacter);
-        credential.add(word);
-    }
+  public void appendSpecialCharacter(){
+      final String specialCharacters = "@#+\\/!#$^?:.(){}[]~-_";
+      Random rand = new Random();
+      String randSpecialCharacter = Character.toString(specialCharacters.charAt(rand.nextInt(specialCharacters.length())));
+      Word word = new Word(randSpecialCharacter);
+      credential.add(word);
+  }
 
-    public void appendNumber(){
-        Random rand = new Random();
-        String randNumber = Integer.toString(rand.nextInt(9)+1);
-        Word word = new Word(randNumber);
-        credential.add(word);
-    }
+  public void appendNumber(){
+      Random rand = new Random();
+      String randNumber = Integer.toString(rand.nextInt(9)+1);
+      Word word = new Word(randNumber);
+      credential.add(word);
+  }
 
 
   /**

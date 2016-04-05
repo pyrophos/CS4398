@@ -1,5 +1,16 @@
 package com.example.wwjdt.passphrasegenerator;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
@@ -19,12 +30,40 @@ public class WordModel
    */
   public WordModel()
   {
-    String[] names = { "terminator", "slicer", "ninja", "cow", "robot", "dog" };
+    String[] names = { "terminator", "slicer", "ninja", "cow", "robot", "dog", "bear", "cat",
+            "algebra", "alphabet", "library", "foo", "bar", "cabinet", "submit", "terminal",
+            "super", "dumpster", "intelligent", "computer", "snake", "monitor", "university",
+            "environment", "zucchini", "youthful", "wrangler", "vintage", "tortilla", "swap", "posh",
+            "nutty", "ugly", "mug", "beautiful", "dusty", "pretty", "cute", "kitten", "lurk", "game",
+            "frog", "eye", "robo", "jumpy", "stupid", "doozy", "gonzo", "klutz", "rambunctious", "yahoo",
+            "tatterdemalion", "google", "second", "hour", "day", "sun", "moon", "rigmarole",
+            "troglodyte", "canoodle"};
     for (String n : names)
     {
       wordList.add(n);
     }
+    loadWords();
   }
+
+  public void loadWords()
+  {
+    Context myContext = addRegister.getAppContext();
+    AssetManager mngr = myContext.getAssets();
+    try {
+      InputStream is = mngr.open("small_dictionary.txt");
+      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+      String line;
+
+      line = reader.readLine();
+      while (line != null){
+        wordList.add(line);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+  }
+
 
   /**
    * Adds a word to the list of words.
@@ -67,7 +106,7 @@ public class WordModel
 
 
   /**
-   * A random word string.
+   * Generates random text.
    *
    * @return
    */

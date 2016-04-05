@@ -1,5 +1,6 @@
 package com.example.wwjdt.passphrasegenerator;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,31 +26,36 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private SeekBar numWordsBar;
     private int minWordLength = 3, maxWordLength = 10, numWords = 1;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_password);
+
         //CheckBoxes
         caseSensitive = (CheckBox) findViewById(R.id.caseSensitive);
         alphanumeric = (CheckBox) findViewById(R.id.alphanumeric);
         specialCharacters = (CheckBox) findViewById(R.id.specialCharacters);
+
         //Buttons
         saveBtn = (Button) findViewById(R.id.saveBtn);
         exitBtn = (Button) findViewById(R.id.exitBtn);
         generateBtn = (Button) findViewById(R.id.generateBtn);
         shuffleBtn = (Button) findViewById(R.id.shuffleBtn);
+
         //Edit Text Fields
         passwordName = (EditText) findViewById(R.id.passwordName);
+
         //Text Display
         passwordDisplay = (TextView) findViewById(R.id.passwordDisplay);
         minChar = (TextView) findViewById(R.id.minChar);
         maxChar = (TextView) findViewById(R.id.maxChar);
         numWordsText = (TextView) findViewById(R.id.numWordsText);
         numWordsDisplay = (TextView) findViewById(R.id.numWordsDisplay);
+
         //Range Bar
         minMaxCharBar = (RangeBar) findViewById(R.id.wordLengthBar);
+
         //Seek Bar
         numWordsBar = (SeekBar) findViewById(R.id.numWordsBar);
 
@@ -79,14 +85,10 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
 

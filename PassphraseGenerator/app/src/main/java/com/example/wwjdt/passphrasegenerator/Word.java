@@ -23,18 +23,29 @@ public class Word
 
   /**
    * Returns word from word object
-   *
    */
   public String getWord(){return this.word;}
 
-    /**
-     * Capitalize the first letter of the word
-     *
-     */
-    public void capitalize(){
-        word = word.substring(0,1).toUpperCase() + word.substring(1);
-    }
+  /**
+   * Capitalize the first letter of the word
+   */
+  public void capitalize(){
+      word = word.substring(0,1).toUpperCase() + word.substring(1);
+  }
 
+  /**
+   * Alternates the case of every other letter in the word.
+   */
+  public void alternateCaps()
+  {
+    for (int i=0; i < word.length(); i++)
+    {
+      if (2%i == 0)
+      {
+        word = word.substring(0,i).toUpperCase();
+      }
+    }
+  }
 
   /**
    * Updates the word object with a new string.

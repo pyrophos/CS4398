@@ -16,11 +16,12 @@ public class addRegister extends AppCompatActivity implements View.OnClickListen
     private Button registerButton, backButton;
     private EditText editUsername, editPassword, textView;
     private static final String MyPREFERENCES= "MyPrefs";
+    static Context context;
     SharedPreferences pref;
-    //test commit
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+      super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_register);
 
         editUsername = (EditText) findViewById(R.id.editUsername);
@@ -30,42 +31,47 @@ public class addRegister extends AppCompatActivity implements View.OnClickListen
 
         backButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
-        pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+      pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+      addRegister.context = getApplicationContext();
 
     }
 
-        @Override
-        public void onClick(View v) {
+  public static Context getAppContext() {
+    return addRegister.context;
+  }
 
-            switch (v.getId()) {
+  @Override
+  public void onClick(View v) {
 
-                case R.id.backButton:
-                    startActivity(new Intent(this, Login.class));
-                    break;
-                case R.id.registerButton:
-                    String usernameText = editUsername.getText().toString().trim();
-                    String passwordText = editPassword.getText().toString().trim();
+      switch (v.getId()) {
 
-                    if (usernameText.length() == 0) {
-                        editUsername.setError("Enter username");
+          case R.id.backButton:
+              startActivity(new Intent(this, Login.class));
+              break;
+          case R.id.registerButton:
+              String usernameText = editUsername.getText().toString().trim();
+              String passwordText = editPassword.getText().toString().trim();
 
-                    } else if (passwordText.length() == 0) {
-                        editPassword.setError("Enter password");
-                    } else {
+              if (usernameText.length() == 0) {
+                  editUsername.setError("Enter username");
 
-                        SharedPreferences.Editor edit = pref.edit();
-                        edit.putString(Constants.KEY_UNM, usernameText);
-                        edit.putString(Constants.KEY_PWD, passwordText);
-                        edit.commit();
-                        finish();
-                        Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
+              } else if (passwordText.length() == 0) {
+                  editPassword.setError("Enter password");
+              } else {
 
-                    }
-                    break;
+                  SharedPreferences.Editor edit = pref.edit();
+                  edit.putString(Constants.KEY_UNM, usernameText);
+                  edit.putString(Constants.KEY_PWD, passwordText);
+                  edit.commit();
+                  finish();
+                  Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
 
-            }
+              }
+              break;
 
-        }
+      }
+
+  }
 
 }
 

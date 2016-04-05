@@ -33,7 +33,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
         pref= getSharedPreferences(ctx,Context.MODE_PRIVATE );
-
     }
 
     @Override

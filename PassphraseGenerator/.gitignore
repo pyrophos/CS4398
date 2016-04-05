@@ -7,3 +7,16 @@
 /build
 /captures
 .idea
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+local.properties
+proguard/
+*.log
+.navigation/
+captures/
+*.jks
