@@ -42,7 +42,7 @@ public class WordModel
     {
       wordList.add(n);
     }
-    loadWords();
+    //loadWords();
   }
 
   public void loadWords()
