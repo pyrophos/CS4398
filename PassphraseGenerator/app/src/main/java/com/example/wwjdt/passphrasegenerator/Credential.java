@@ -38,11 +38,12 @@ public class Credential
 
    */
   public Credential(final int numWords,
-                    final int maxCharacters, final int minCharacters)
+                    final int maxCharacters, final int minCharacters, WordModel wordModel)
   {
     this.minCharacters = minCharacters;
     this.maxCharacters = maxCharacters;
     this.numWords = numWords;
+      this.wordModel = wordModel;
 
   }
 

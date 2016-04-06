@@ -21,6 +21,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private Button saveBtn, exitBtn, generateBtn, shuffleBtn;
     private EditText passwordName, minWords, maxWords;
     private TextView passwordDisplay, minChar, maxChar, numWordsText, numWordsDisplay;
+    private WordModel wordModel = new WordModel();
     private Credential credential;
     private RangeBar minMaxCharBar;
     private SeekBar numWordsBar;
@@ -31,6 +32,9 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_password);
+
+        //load words from text file
+        wordModel.loadWords(this);
 
         //CheckBoxes
         caseSensitive = (CheckBox) findViewById(R.id.caseSensitive);
@@ -80,7 +84,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         numWordsBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                numWords = progress + 1;
+                numWords = progress + 3;
                 numWordsDisplay.setText(String.valueOf(numWords));
             }
 
@@ -105,7 +109,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     public Credential generatePassword(){
 
 
-        Credential credential = new Credential(numWords, maxWordLength, minWordLength);
+        Credential credential = new Credential(numWords, maxWordLength, minWordLength, wordModel);
 
         for(int i = 0; i < numWords; i++){
             credential.addWord();

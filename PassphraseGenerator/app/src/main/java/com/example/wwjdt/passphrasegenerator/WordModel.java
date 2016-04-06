@@ -24,46 +24,31 @@ public class WordModel
   private final ArrayList<String> wordList = new ArrayList<String>();
   Random rand = new Random(System.currentTimeMillis());
 
-  /**
-   * Loads data into the list of words.
-   * This will be replaced once we get sqlite going.
-   */
-  public WordModel()
+  public void loadWords(Context c)
   {
-    String[] names = { "terminator", "slicer", "ninja", "cow", "robot", "dog", "bear", "cat",
-            "algebra", "alphabet", "library", "foo", "bar", "cabinet", "submit", "terminal",
-            "super", "dumpster", "intelligent", "computer", "snake", "monitor", "university",
-            "environment", "zucchini", "youthful", "wrangler", "vintage", "tortilla", "swap", "posh",
-            "nutty", "ugly", "mug", "beautiful", "dusty", "pretty", "cute", "kitten", "lurk", "game",
-            "frog", "eye", "robo", "jumpy", "stupid", "doozy", "gonzo", "klutz", "rambunctious", "yahoo",
-            "tatterdemalion", "google", "second", "hour", "day", "sun", "moon", "rigmarole",
-            "troglodyte", "canoodle"};
-    for (String n : names)
-    {
-      wordList.add(n);
-    }
-    //loadWords();
-  }
-
-  public void loadWords()
-  {
-    Context myContext = addRegister.getAppContext();
-    AssetManager mngr = myContext.getAssets();
+    BufferedReader reader = null;
     try {
-      InputStream is = mngr.open("small_dictionary.txt");
-      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-      String line;
+      reader = new BufferedReader(
+              new InputStreamReader(c.getAssets().open("small_dictionary.txt")));
 
-      line = reader.readLine();
-      while (line != null){
-        wordList.add(line);
+      // do reading, usually loop until end of file reading
+      String mLine;
+      while ((mLine = reader.readLine()) != null) {
+        //process line
+        wordList.add(mLine);
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      //log the exception
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException e) {
+          //log the exception
+        }
+      }
     }
-
   }
-
 
   /**
    * Adds a word to the list of words.
@@ -85,7 +70,6 @@ public class WordModel
     final int lowerBound = 0;
     final int upperBound = wordList.size();
     int random_integer;
-    String word;
     do {
       random_integer = rand.nextInt(upperBound);
     }while((wordList.get(random_integer).length() > maxChar) || (wordList.get(random_integer).length() < minChar));
