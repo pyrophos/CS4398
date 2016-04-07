@@ -29,7 +29,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private Credential credential;
     private RangeBar minMaxCharBar;
     private SeekBar numWordsBar;
-    private int minWordLength = 3, maxWordLength = 10, numWords = 1;
+    private int minWordLength = 3, maxWordLength = 8, numWords = 3;
     public String MyPREFERENCES;
     SharedPreferences pref;
     SharedPreferences.Editor spEditor;
@@ -82,8 +82,8 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         minMaxCharBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override
             public void onIndexChangeListener(RangeBar rangeBar, int leftThumbIndex, int rightThumbIndex) {
-                minWordLength = leftThumbIndex + 3;
-                maxWordLength = rightThumbIndex + 3;
+                minWordLength = leftThumbIndex + minWordLength;
+                maxWordLength = rightThumbIndex + minWordLength;
 
                 minChar.setText(String.valueOf(minWordLength));
                 maxChar.setText(String.valueOf(maxWordLength));
@@ -93,7 +93,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         numWordsBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                numWords = progress + 3;
+                numWords = progress + numWords;
                 numWordsDisplay.setText(String.valueOf(numWords));
             }
 
