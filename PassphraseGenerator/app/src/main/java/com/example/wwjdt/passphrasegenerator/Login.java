@@ -17,7 +17,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private Button loginButton, registerButton;
     private EditText editUsername, editPassword;
-    private static final String ctx ="MyPrefs";
+    private String MyPREFERENCES;
     SharedPreferences pref;
 
     @Override
@@ -32,7 +32,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
-        pref= getSharedPreferences(ctx,Context.MODE_PRIVATE );
+
+
     }
 
     @Override
@@ -60,34 +61,40 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }else if(pwd.length()==0){
             editPassword.setError("Enter Password");
         }else{
+            MyPREFERENCES = unm;
+            SharedPreferences settings =this.getSharedPreferences(MyPREFERENCES, 0);
+            if((settings.equals("0"))){
 
-            int res= checkLogin(ctx, unm, pwd);
-
-            if(res==0)
-            {
-                Toast.makeText(this, "Please Register", Toast.LENGTH_LONG).show();
-            }else if (res ==1)
-            {
-                Intent intent = new Intent (this, content.class);
-                intent.putExtra("user", unm);
-                startActivity(intent);
-
-            }else if (res == 2)
-            {
                 Toast.makeText(this, "Please Enter Valid Username/Password", Toast.LENGTH_LONG).show();
+            }else{
+
+
+                pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+                int res = checkLogin(unm, pwd);
+
+                if (res == 0) {
+                    Toast.makeText(this, "Please Register", Toast.LENGTH_LONG).show();
+                } else if (res == 1) {
+                    Intent intent = new Intent(this, content.class);
+                    intent.putExtra("user", unm);
+                    startActivity(intent);
+
+                } else if (res == 2) {
+                    Toast.makeText(this, "Please Enter Valid Username/Password", Toast.LENGTH_LONG).show();
+                }
             }
         }
 
     }
-    public int checkLogin(String ctx, String unm, String pwd)
+    public int checkLogin(String unm, String pwd)
     {
-        String punm = pref.getString(Constants.KEY_UNM, "");
         String ppwd = pref.getString(Constants.KEY_PWD, "");
 
-        if(punm.length()==0){
+        if(ppwd.length()==0){
             return 0;
 
-        }else if(punm.equals(unm)&&ppwd.equals(pwd)){
+        }else if(ppwd.equals(pwd)){
 
             return 1;
 

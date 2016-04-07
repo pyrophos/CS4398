@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.wwjdt.passphrasegenerator.addRegister"
-    tools:showIn="@layout/activity_add_register">
+    tools:showIn="@layout/activity_add_register"
+    android:background="#e0e0d1">
 
     <TextView android:text="New User Register"
         android:layout_width="wrap_content"
@@ -65,7 +66,8 @@
         android:layout_alignBaseline="@+id/backButton"
         android:layout_alignBottom="@+id/backButton"
         android:layout_alignLeft="@+id/textview"
-        android:layout_alignStart="@+id/textview" />
+        android:layout_alignStart="@+id/textview"
+        android:background="#e67300" />
 
     <Button
         android:id="@+id/backButton"
@@ -75,7 +77,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textview"
         android:layout_alignEnd="@+id/textview"
-        android:layout_marginBottom="36dp" />
-
+        android:layout_marginBottom="36dp"
+        android:background="#e67300" />
 
 </RelativeLayout>

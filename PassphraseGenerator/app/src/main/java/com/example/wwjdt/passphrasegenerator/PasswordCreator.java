@@ -1,8 +1,11 @@
 package com.example.wwjdt.passphrasegenerator;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Toast;
 
 import com.edmodo.rangebar.RangeBar;
 
@@ -26,12 +30,17 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private RangeBar minMaxCharBar;
     private SeekBar numWordsBar;
     private int minWordLength = 3, maxWordLength = 10, numWords = 1;
+    public String MyPREFERENCES;
+    SharedPreferences pref;
+    SharedPreferences.Editor spEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_password);
+        Intent intent = getIntent();
+        MyPREFERENCES = intent.getStringExtra("user");
 
         //load words from text file
         wordModel.loadWords(this);
@@ -95,14 +104,67 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
+    private void add()
+    {
+        Log.i("Inside add function", "it works");
+        String acctName = passwordName.getText().toString();
+        Log.i("acctName", String.format("%s", acctName));
+        String passName = String.valueOf(credential.toString());
+        Log.i("passName", String.format("%s", passName));
+        if(!acctName.isEmpty() && acctName.length() > 0 && !passName.isEmpty() && passName.length() > 0) {
+
+            pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+            spEditor = pref.edit();
+            int count = 0; //preferences.getInt("count", 0);
+
+            //for logcat debugging
+            for (String key : pref.getAll().keySet()) {
+                count = count + 1;
+                Log.i(String.format("Shared Preference : %s Num %d - %s", MyPREFERENCES, count, key),
+                        pref.getString(key, "error!"));
+            }
+            if(count <=3){
+                int recount = (count/2)-1;
+                spEditor.putString("AcctName[" + recount + "]", acctName);
+                spEditor.putString("AcctPass[" + recount + "]", passName);
+            }else{
+                int recount = (count/2)-(1/2);
+                spEditor.putString("AcctName[" + recount + "]", acctName);
+                spEditor.putString("AcctPass[" + recount + "]", passName);
+            }
+
+            spEditor.commit();
+
+
+            passwordName.setText("");
+
+            Toast.makeText(getApplicationContext(), "Account & Password Added", Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(getApplicationContext(), "Account & Password Not Added ", Toast.LENGTH_SHORT).show();
+        }
+
+        Intent intent = new Intent(this, content.class);
+        intent.putExtra("user", MyPREFERENCES);
+        startActivity(intent);
+        finish();
+    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.generateBtn: credential = generatePassword(); break;
             case R.id.shuffleBtn: shuffle(); break;
-            case R.id.saveBtn: break;
-            case R.id.exitBtn: break;
+            case R.id.saveBtn:
+                add();
+                break;
+            case R.id.exitBtn:
+                Intent intentExit = new Intent(this, content.class);
+                intentExit.putExtra("user", MyPREFERENCES);
+                startActivity(intentExit);
+                break;
         }
     }
 
