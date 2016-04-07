@@ -16,12 +16,11 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * This is mostly a stub to help us test what we have.  Most of what is written
- * here will be replaced with sqlite code.
+ *
  */
 public class WordModel
 {
-  private final ArrayList<String> wordList = new ArrayList<String>();
+  private final ArrayList<String> wordList = new ArrayList<>();
   Random rand = new Random(System.currentTimeMillis());
 
   public void loadWords(Context c)
@@ -31,10 +30,9 @@ public class WordModel
       reader = new BufferedReader(
               new InputStreamReader(c.getAssets().open("small_dictionary.txt")));
 
-      // do reading, usually loop until end of file reading
+      // do reading, loop until end of file reading
       String mLine;
       while ((mLine = reader.readLine()) != null) {
-        //process line
         wordList.add(mLine);
       }
     } catch (IOException e) {
@@ -67,12 +65,12 @@ public class WordModel
    */
   public String getRandomWord(int minChar, int maxChar)
   {
-    final int lowerBound = 0;
     final int upperBound = wordList.size();
     int random_integer;
     do {
       random_integer = rand.nextInt(upperBound);
-    }while((wordList.get(random_integer).length() > maxChar) || (wordList.get(random_integer).length() < minChar));
+    }while((wordList.get(random_integer).length() > maxChar)
+        || (wordList.get(random_integer).length() < minChar));
 
     return wordList.get(random_integer);
   }
@@ -87,7 +85,6 @@ public class WordModel
   {
     return word.substring(0, 1).toUpperCase() + word.substring(1);
   }
-
 
   /**
    * Generates random text.

@@ -24,8 +24,6 @@ public class addRegister extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_register);
 
-
-
         editUsername = (EditText) findViewById(R.id.editUsername);
         editPassword = (EditText) findViewById(R.id.editPassword);
         backButton = (Button) findViewById(R.id.backButton);
@@ -34,7 +32,6 @@ public class addRegister extends AppCompatActivity implements View.OnClickListen
         backButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
         pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
     }
 
     @Override
@@ -66,10 +63,8 @@ public class addRegister extends AppCompatActivity implements View.OnClickListen
 
                     finish();
                     Toast.makeText(this, "Registered", Toast.LENGTH_LONG).show();
-
                 }
                 break;
-
         }
 
     }

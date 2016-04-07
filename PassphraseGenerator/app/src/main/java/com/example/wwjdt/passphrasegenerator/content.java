@@ -1,5 +1,6 @@
 package com.example.wwjdt.passphrasegenerator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,8 +36,8 @@ public class content extends AppCompatActivity {
     public String MyPREFERENCES;
     SharedPreferences pref;
     SharedPreferences.Editor spEditor;
-    int count = 0;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class content extends AppCompatActivity {
 
 
         spEditor = pref.edit();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, accountnames);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, accountnames);
 
         String ActName;
         String ActPass;
@@ -147,14 +148,12 @@ public class content extends AppCompatActivity {
             pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             spEditor = pref.edit();
 
-
             for (int i = pos; i < pref.getAll().size() - 1; i++) {
 
                 int prefCount = (pref.getAll().size() - 1)/2;
-
-
                 String newActName = pref.getString("AcctName[" + (i + 1) + "]", "");
                 Log.i("acctName", String.format("%s", newActName));
+
                 String PassActName = pref.getString("AcctPass[" + (i + 1) + "]", "");
                 if (newActName != "" && PassActName != "") {
                     spEditor.remove("AcctName[" + (i + 1) + "]");
@@ -163,7 +162,7 @@ public class content extends AppCompatActivity {
                     Log.i("acctName", String.format("%s", newActName));
                     spEditor.putString("AcctPass[" + i + "]", PassActName);
                     //spEditor.apply();
-                } else if (i == 0 || i == prefCount -1) {
+                }else if (i == 0 || i == prefCount -1) {
                     spEditor.remove("AcctName[" + i + "]");
                     //spEditor.apply();
                 }else{
