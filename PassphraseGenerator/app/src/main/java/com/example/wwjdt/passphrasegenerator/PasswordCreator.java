@@ -82,8 +82,8 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         minMaxCharBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override
             public void onIndexChangeListener(RangeBar rangeBar, int leftThumbIndex, int rightThumbIndex) {
-                minWordLength = leftThumbIndex + minWordLength;
-                maxWordLength = rightThumbIndex + minWordLength;
+                minWordLength = leftThumbIndex + 3;
+                maxWordLength = rightThumbIndex + 3;
 
                 minChar.setText(String.valueOf(minWordLength));
                 maxChar.setText(String.valueOf(maxWordLength));
@@ -93,7 +93,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         numWordsBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                numWords = progress + numWords;
+                numWords = progress + 3;
                 numWordsDisplay.setText(String.valueOf(numWords));
             }
 
