@@ -1,6 +1,9 @@
 package com.example.wwjdt.passphrasegenerator;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,7 +30,7 @@ public class content extends AppCompatActivity {
 
     ListView accountList;
     EditText accountNameTxt;
-    Button addButton, deleteButton, editAndViewButton, logoutButton;
+    Button addButton, logoutButton;
     ArrayList<String> accountnames = new ArrayList<String>();
     ArrayList<String> accountPass = new ArrayList<String>();
     ArrayAdapter<String> adapter;
@@ -50,8 +53,8 @@ public class content extends AppCompatActivity {
         accountList = (ListView) findViewById(R.id.ListView1);
         accountNameTxt = (EditText) findViewById(R.id.accountNameTxt);
         addButton = (Button) findViewById(R.id.addButton);
-        deleteButton = (Button) findViewById(R.id.deleteButton);
-        editAndViewButton = (Button) findViewById(R.id.editAndViewButton);
+
+
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
 
@@ -63,9 +66,9 @@ public class content extends AppCompatActivity {
         for (int i = 0; i <= pref.getAll().size(); i++) {
 
             ActName = pref.getString("AcctName[" + i + "]", "empty");
-            ActPass = pref.getString("AcctPass[" + i + "]", "empty");
-            if (ActName != "empty" && ActPass != "empty")
-                accountnames.add(ActName + " \n" + ActPass);
+            //ActPass = pref.getString("AcctPass[" + i + "]", "empty");
+            if (ActName != "empty")
+                accountnames.add(ActName);
         }
 
         //DEBUGGING
@@ -95,13 +98,38 @@ public class content extends AppCompatActivity {
         });
         adapter.notifyDataSetChanged();
 
-
         accountList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-                //accountNameTxt.setText(accountnames.get(position));
-            }
 
+                String dialogName = pref.getString("AcctName[" + position + "]", "");
+                String dialogPass = pref.getString("AcctPass[" + position + "]", "");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(content.this);
+                builder.setTitle(dialogName);
+                builder.setMessage("Account Password: " + dialogPass + "");
+                builder
+                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                Intent intent = new Intent(content.this, PasswordCreator.class);
+                                intent.putExtra("user", MyPREFERENCES);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                delete();
+                            }
+                        })
+
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                //cancel click
+                            }
+                        });
+                builder.show();
+
+            }
         });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,15 +140,7 @@ public class content extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delete();
-                Intent intent = new Intent(content.this, content.class);
-                intent.putExtra("user", MyPREFERENCES);
-                startActivity(intent);
-            }
-        });
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,14 +148,7 @@ public class content extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        editAndViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(content.this, PasswordCreator.class);
-                intent.putExtra("user", MyPREFERENCES);
-                startActivity(intent);
-            }
-        });
+
     }
 
 
@@ -178,6 +191,9 @@ public class content extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
         }
+        Intent intent = new Intent(content.this, content.class);
+        intent.putExtra("user", MyPREFERENCES);
+        startActivity(intent);
 
     }
 

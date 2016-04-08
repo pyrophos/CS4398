@@ -27,59 +27,39 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:onClick="Delete"
-        android:text="DELETE"
-        android:layout_below="@+id/accountNameTxt"
-        android:layout_toRightOf="@+id/editAndViewButton"
-        android:layout_toEndOf="@+id/editAndViewButton"
-        android:background="#e67300" />
-
-    <Button
-        android:id="@+id/editAndViewButton"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:onClick="Edit"
-        android:text="EDIT/VIEW"
-        android:layout_below="@+id/accountNameTxt"
-        android:layout_toRightOf="@+id/addButton"
-        android:layout_toEndOf="@+id/addButton"
-        android:background="#D2691E" />
-    <Button
         android:id="@+id/logoutButton"
-        android:layout_width="85dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:onClick="logout"
-        android:text="LOGOUT"
-        android:background="#D2691E"
-        android:layout_alignRight="@+id/accountNameTxt"
-        android:layout_alignEnd="@+id/accountNameTxt"
-        android:layout_below="@+id/accountNameTxt" />
+        android:background= "@drawable/logout"
+        android:layout_below="@+id/accountNameTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp" />
 
     <Button
         android:id="@+id/addButton"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:onClick="Add"
-        android:text="ADD"
-        android:background="#e67300"
-        android:layout_above="@+id/ListView1"
-        android:layout_below="@+id/accountNameTxt" />
+        android:background= "@drawable/addbutton"
+        android:layout_below="@+id/accountNameTxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp" />
 
     <ListView
         android:id="@+id/ListView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice"
-        android:layout_below="@+id/deleteButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/logoutButton">
 
     </ListView>
 
