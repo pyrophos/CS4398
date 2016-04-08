@@ -124,15 +124,12 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
                 Log.i(String.format("Shared Preference : %s Num %d - %s", MyPREFERENCES, count, key),
                         pref.getString(key, "error!"));
             }
-            if(count <=3){
-                int recount = (count/2)-1;
-                spEditor.putString("AcctName[" + recount + "]", acctName);
-                spEditor.putString("AcctPass[" + recount + "]", passName);
-            }else{
+
                 int recount = (count/2)-(1/2);
                 spEditor.putString("AcctName[" + recount + "]", acctName);
                 spEditor.putString("AcctPass[" + recount + "]", passName);
-            }
+
+
 
             spEditor.commit();
 
