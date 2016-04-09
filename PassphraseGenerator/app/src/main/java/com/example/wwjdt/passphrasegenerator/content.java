@@ -6,20 +6,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -59,7 +67,7 @@ public class content extends AppCompatActivity {
 
 
         spEditor = pref.edit();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, accountnames);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, accountnames);
 
         String ActName;
         String ActPass;
@@ -78,6 +86,7 @@ public class content extends AppCompatActivity {
             Log.i(String.format("Shared Preference : %s - %s", MyPREFERENCES, key),
                     pref.getString(key, "error!"));
         }
+
         accountList.setAdapter(adapter);
 
         accountNameTxt.addTextChangedListener(new TextWatcher() {
@@ -96,109 +105,151 @@ public class content extends AppCompatActivity {
 
             }
         });
+
         adapter.notifyDataSetChanged();
 
         accountList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> arg0, View view, final int position, long id) {
 
                 String dialogName = pref.getString("AcctName[" + position + "]", "");
                 String dialogPass = pref.getString("AcctPass[" + position + "]", "");
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(content.this);
-                builder.setTitle(dialogName);
-                builder.setMessage("Account Password: " + dialogPass + "");
-                builder
-                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                Intent intent = new Intent(content.this, PasswordCreator.class);
-                                intent.putExtra("user", MyPREFERENCES);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                delete();
-                            }
-                        })
+                final Dialog dialog = new Dialog(content.this);
+                dialog.setContentView(R.layout.content_dialog_box);
 
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                //cancel click
-                            }
-                        });
-                builder.show();
 
+                // set the custom dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+                text.setText("Password: " + dialogPass + "");
+                TextView text_view2 = (TextView) dialog.findViewById(R.id.text_view2);
+                //text_view2.setText(dialogName);
+                SpannableString spanString = new SpannableString(dialogName);
+                spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+                text_view2.setText(spanString);
+
+
+                Button editButton = (Button) dialog.findViewById(R.id.btn_edit);
+                Button copyButton = (Button) dialog.findViewById(R.id.btn_copy);
+                Button deleteButton = (Button) dialog.findViewById(R.id.btn_delete);
+                Button cancelButton = (Button) dialog.findViewById(R.id.btn_cancel);
+                // if button is clicked, close the custom dialog
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(content.this, PasswordCreator.class);
+                        Bundle acctEdit = new Bundle();
+                        acctEdit.putString("user", MyPREFERENCES);
+                        acctEdit.putInt("pos", position);
+                        acctEdit.putString("mode", "edit");
+                        intent.putExtras(acctEdit);
+                        startActivity(intent);
+
+                    }
+
+                });
+                copyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+
+                });
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        delete();
+
+                    }
+
+                });
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+
+                    }
+
+                });
+
+
+                dialog.getWindow().setLayout(600, 400);
+                dialog.show();
+
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(content.this, PasswordCreator.class);
+                        Bundle acctAdd = new Bundle();
+                        acctAdd.putString("user", MyPREFERENCES);
+                        acctAdd.putString("mode", "add");
+                        intent.putExtras(acctAdd);
+                        startActivity(intent);
+
+                    }
+                });
+
+                logoutButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(content.this, Login.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(content.this, PasswordCreator.class);
+            private void delete() {
+                int pos = accountList.getCheckedItemPosition();
+                if (pos > -1) {
+                    adapter.remove(accountnames.get(pos));
+
+                    pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                    spEditor = pref.edit();
+
+
+                    for (int i = pos; i < pref.getAll().size() - 1; i++) {
+
+                        int prefCount = (pref.getAll().size() - 1) / 2;
+
+
+                        String newActName = pref.getString("AcctName[" + (i + 1) + "]", "");
+                        Log.i("acctName", String.format("%s", newActName));
+                        String PassActName = pref.getString("AcctPass[" + (i + 1) + "]", "");
+                        if (newActName != "" && PassActName != "") {
+                            spEditor.remove("AcctName[" + (i + 1) + "]");
+                            spEditor.remove("AcctPass[" + (i + 1) + "]");
+                            spEditor.putString("AcctName[" + i + "]", newActName);
+                            Log.i("acctName", String.format("%s", newActName));
+                            spEditor.putString("AcctPass[" + i + "]", PassActName);
+                            //spEditor.apply();
+                        } else if (i == 0 || i == prefCount - 1) {
+                            spEditor.remove("AcctName[" + i + "]");
+                            spEditor.remove("AcctPass[" + i + "]");
+
+                            //spEditor.apply();
+                        } else {
+                            spEditor.remove("AcctPass[" + (i + 1) + "]");
+                            spEditor.remove("AcctName[" + (i + 1) + "]");
+
+                        }
+
+                    }
+
+                    spEditor.commit();
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(), "Account Deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent(content.this, content.class);
                 intent.putExtra("user", MyPREFERENCES);
                 startActivity(intent);
+
             }
         });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(content.this, Login.class);
-                startActivity(intent);
-            }
-        });
-
     }
-
-
-    private void delete() {
-        int pos = accountList.getCheckedItemPosition();
-        if (pos > -1) {
-            adapter.remove(accountnames.get(pos));
-
-            pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-            spEditor = pref.edit();
-
-
-            for (int i = pos; i < pref.getAll().size() - 1; i++) {
-
-                int prefCount = (pref.getAll().size() - 1)/2;
-
-
-                String newActName = pref.getString("AcctName[" + (i + 1) + "]", "");
-                Log.i("acctName", String.format("%s", newActName));
-                String PassActName = pref.getString("AcctPass[" + (i + 1) + "]", "");
-                if (newActName != "" && PassActName != "") {
-                    spEditor.remove("AcctName[" + (i + 1) + "]");
-                    spEditor.remove("AcctPass[" + (i + 1) + "]");
-                    spEditor.putString("AcctName[" + i + "]", newActName);
-                    Log.i("acctName", String.format("%s", newActName));
-                    spEditor.putString("AcctPass[" + i + "]", PassActName);
-                    //spEditor.apply();
-                } else if (i == 0 || i == prefCount -1) {
-                    spEditor.remove("AcctName[" + i + "]");
-                    spEditor.remove("AcctPass[" + i + "]");
-
-                    //spEditor.apply();
-                }else{
-                    spEditor.remove("AcctPass[" + (i + 1) + "]");
-                    spEditor.remove("AcctName[" + (i + 1) + "]");
-
-                }
-
-            }
-
-            spEditor.commit();
-            adapter.notifyDataSetChanged();
-            Toast.makeText(getApplicationContext(), "Account Deleted", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
-        }
-        Intent intent = new Intent(content.this, content.class);
-        intent.putExtra("user", MyPREFERENCES);
-        startActivity(intent);
-
-    }
-
 }

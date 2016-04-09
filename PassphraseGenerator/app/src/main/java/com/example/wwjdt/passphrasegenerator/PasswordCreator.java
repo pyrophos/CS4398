@@ -31,6 +31,9 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private SeekBar numWordsBar;
     private int minWordLength = 3, maxWordLength = 10, numWords = 1;
     public String MyPREFERENCES;
+    public int pos;
+    public String mode;
+    public String editacct;
     SharedPreferences pref;
     SharedPreferences.Editor spEditor;
 
@@ -40,7 +43,12 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
 
         setContentView(R.layout.activity_add_password);
         Intent intent = getIntent();
-        MyPREFERENCES = intent.getStringExtra("user");
+        Bundle acctEdit = intent.getExtras();
+        MyPREFERENCES = acctEdit.getString("user");
+        pos = acctEdit.getInt("pos");
+        mode = acctEdit.getString("mode");
+
+        pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         //load words from text file
         wordModel.loadWords(this);
@@ -78,6 +86,13 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         saveBtn.setOnClickListener(this);
         exitBtn.setOnClickListener(this);
 
+        Log.i("Current mode", mode);
+        if(mode.equals("edit")){
+            passwordName.setText(pref.getString("AcctName[" + pos + "]", "error"));
+            passwordDisplay.setText(pref.getString("AcctPass[" + pos + "]", "error"));
+
+        }
+
         //Bar listeners
         minMaxCharBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override
@@ -98,10 +113,12 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
     }
     private void add()
@@ -116,21 +133,25 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
             spEditor = pref.edit();
-            int count = 0; //preferences.getInt("count", 0);
 
-            //for logcat debugging
-            for (String key : pref.getAll().keySet()) {
-                count = count + 1;
-                Log.i(String.format("Shared Preference : %s Num %d - %s", MyPREFERENCES, count, key),
-                        pref.getString(key, "error!"));
-            }
+            if(mode.equals("add")){
+                int count = 0; //preferences.getInt("count", 0);
+                //for logcat debugging
+                for (String key : pref.getAll().keySet()) {
+                    count = count + 1;
+                    Log.i(String.format("Shared Preference : %s Num %d - %s", MyPREFERENCES, count, key),
+                            pref.getString(key, "error!"));
+                }
 
-                int recount = (count/2)-(1/2);
+                int recount = (count / 2) - (1 / 2);
                 spEditor.putString("AcctName[" + recount + "]", acctName);
                 spEditor.putString("AcctPass[" + recount + "]", passName);
 
 
-
+            } else {
+                spEditor.putString("AcctName[" + pos + "]", acctName);
+                spEditor.putString("AcctPass[" + pos + "]", passName);
+            }
             spEditor.commit();
 
 

@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.wwjdt.passphrasegenerator.addRegister"
-    tools:showIn="@layout/activity_add_register"
-    android:background="#e0e0d1">
+    android:background="@drawable/registerbackground">
 
-    <TextView android:text="New User Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview"
-        android:textSize="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:id="@+id/imageView2"
-        android:src="@drawable/lockfile"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textview"
-        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/editUsername"
@@ -36,7 +20,7 @@
         android:layout_height="wrap_content"
         android:hint="Username:"
         android:focusable="true"
-        android:layout_marginTop="270dp"
+        android:layout_above="@+id/editPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -50,33 +34,37 @@
         android:inputType="textPassword"
         android:ems="10"
         android:hint="Password:"
-        android:layout_below="@+id/editUsername"
+        android:layout_marginBottom="26dp"
+        android:layout_above="@+id/registerButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editUsername"
-        android:layout_alignEnd="@+id/editUsername" />
+        android:layout_alignParentStart="true" />
 
 
     <Button
         android:id="@+id/registerButton"
         android:onClick="save"
-        android:layout_width="125dp"
+        android:layout_width="100dp"
         android:layout_height="60dp"
+        android:background="@android:color/transparent"
 
-        android:background="@drawable/save"
-        android:layout_below="@+id/editPassword"
-        android:layout_alignLeft="@+id/textview"
-        android:layout_alignStart="@+id/textview"
-        android:layout_marginTop="27dp" />
+        android:layout_alignTop="@+id/backButton"
+        android:layout_toLeftOf="@+id/backButton"
+        android:layout_toStartOf="@+id/backButton"
+        android:layout_marginRight="46dp"
+        android:layout_marginEnd="46dp" />
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="125dp"
+        android:layout_width="105dp"
         android:layout_height="60dp"
-
-        android:background="@drawable/back"
-        android:layout_alignTop="@+id/registerButton"
-        android:layout_alignRight="@+id/textview"
-        android:layout_alignEnd="@+id/textview" />
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editPassword"
+        android:layout_alignEnd="@+id/editPassword"
+        android:layout_marginRight="45dp"
+        android:layout_marginEnd="45dp" />
 
 </RelativeLayout>
