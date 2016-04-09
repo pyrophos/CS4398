@@ -29,7 +29,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private Credential credential;
     private RangeBar minMaxCharBar;
     private SeekBar numWordsBar;
-    private int minWordLength = 3, maxWordLength = 10, numWords = 1;
+    private int minWordLength = 3, maxWordLength = 8, numWords = 3;
     public String MyPREFERENCES;
     public int pos;
     public String mode;

@@ -20,14 +20,18 @@
         <activity
             android:name=".content"
             android:label="@string/title_activity_content"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".addRegister"
             android:label="@string/title_activity_add_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PasswordCreator" />
-    </application>
+        <activity
+            android:name=".PasswordCreator"></activity>
+
+
+        <activity
+            android:name=".editAndView"></activity>
+
+    </application>a
 
 </manifest>
