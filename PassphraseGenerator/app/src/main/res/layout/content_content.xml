@@ -56,7 +56,7 @@
     <ListView
         android:id="@+id/ListView1"
         android:layout_width="500dp"
-        android:layout_height="365dp"
+        android:layout_height="335dp"
         android:choiceMode="singleChoice"
         android:dividerHeight="3dp"
         android:layout_centerHorizontal="true"

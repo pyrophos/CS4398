@@ -102,6 +102,30 @@ public class content extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
+        logoutButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(content.this, Login.class);
+                        startActivity(intent);
+
+                    }
+                }
+        );
+        addButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(content.this, PasswordCreator.class);
+                        Bundle acctAdd = new Bundle();
+                        acctAdd.putString("user", MyPREFERENCES);
+                        acctAdd.putString("mode", "add");
+                        intent.putExtras(acctAdd);
+                        startActivity(intent);
+
+                    }
+                }
+        );
+
+
         accountList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, final int position, long id) {
@@ -173,77 +197,56 @@ public class content extends AppCompatActivity {
                 dialog.getWindow().setLayout(600, 400);
                 dialog.show();
 
-                addButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(content.this, PasswordCreator.class);
-                        Bundle acctAdd = new Bundle();
-                        acctAdd.putString("user", MyPREFERENCES);
-                        acctAdd.putString("mode", "add");
-                        intent.putExtras(acctAdd);
-                        startActivity(intent);
-
-                    }
-                });
-
-                logoutButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(content.this, Login.class);
-                        startActivity(intent);
-                    }
-                });
             }
 
-            private void delete() {
-                int pos = accountList.getCheckedItemPosition();
-                if (pos > -1) {
-                    adapter.remove(accountnames.get(pos));
-
-                    pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    spEditor = pref.edit();
-
-
-                    for (int i = pos; i < pref.getAll().size() - 1; i++) {
-
-                        int prefCount = (pref.getAll().size() - 1) / 2;
-
-
-                        String newActName = pref.getString("AcctName[" + (i + 1) + "]", "");
-                        Log.i("acctName", String.format("%s", newActName));
-                        String PassActName = pref.getString("AcctPass[" + (i + 1) + "]", "");
-                        if (newActName != "" && PassActName != "") {
-                            spEditor.remove("AcctName[" + (i + 1) + "]");
-                            spEditor.remove("AcctPass[" + (i + 1) + "]");
-                            spEditor.putString("AcctName[" + i + "]", newActName);
-                            Log.i("acctName", String.format("%s", newActName));
-                            spEditor.putString("AcctPass[" + i + "]", PassActName);
-                            //spEditor.apply();
-                        } else if (i == 0 || i == prefCount - 1) {
-                            spEditor.remove("AcctName[" + i + "]");
-                            spEditor.remove("AcctPass[" + i + "]");
-
-                            //spEditor.apply();
-                        } else {
-                            spEditor.remove("AcctPass[" + (i + 1) + "]");
-                            spEditor.remove("AcctName[" + (i + 1) + "]");
-
-                        }
-
-                    }
-
-                    spEditor.commit();
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(getApplicationContext(), "Account Deleted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
-                }
-                Intent intent = new Intent(content.this, content.class);
-                intent.putExtra("user", MyPREFERENCES);
-                startActivity(intent);
-
-            }
         });
+    }
+    private void delete() {
+        int pos = accountList.getCheckedItemPosition();
+        if (pos > -1) {
+            adapter.remove(accountnames.get(pos));
+
+            pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            spEditor = pref.edit();
+
+
+            for (int i = pos; i < pref.getAll().size() - 1; i++) {
+
+                int prefCount = (pref.getAll().size() - 1) / 2;
+
+
+                String newActName = pref.getString("AcctName[" + (i + 1) + "]", "");
+                Log.i("acctName", String.format("%s", newActName));
+                String PassActName = pref.getString("AcctPass[" + (i + 1) + "]", "");
+                if (newActName != "" && PassActName != "") {
+                    spEditor.remove("AcctName[" + (i + 1) + "]");
+                    spEditor.remove("AcctPass[" + (i + 1) + "]");
+                    spEditor.putString("AcctName[" + i + "]", newActName);
+                    Log.i("acctName", String.format("%s", newActName));
+                    spEditor.putString("AcctPass[" + i + "]", PassActName);
+                    //spEditor.apply();
+                } else if (i == 0 || i == prefCount - 1) {
+                    spEditor.remove("AcctName[" + i + "]");
+                    spEditor.remove("AcctPass[" + i + "]");
+
+                    //spEditor.apply();
+                } else {
+                    spEditor.remove("AcctPass[" + (i + 1) + "]");
+                    spEditor.remove("AcctName[" + (i + 1) + "]");
+
+                }
+
+            }
+
+            spEditor.commit();
+            adapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(), "Account Deleted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
+        }
+        Intent intent = new Intent(content.this, content.class);
+        intent.putExtra("user", MyPREFERENCES);
+        startActivity(intent);
+
     }
 }

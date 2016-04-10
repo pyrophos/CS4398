@@ -47,7 +47,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         MyPREFERENCES = acctEdit.getString("user");
         pos = acctEdit.getInt("pos");
         mode = acctEdit.getString("mode");
-
+        Log.i("Current mode", mode);
         pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         //load words from text file

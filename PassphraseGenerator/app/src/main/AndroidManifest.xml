@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Login"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,17 +21,17 @@
         <activity
             android:name=".content"
             android:label="@string/title_activity_content"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".addRegister"
             android:label="@string/title_activity_add_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PasswordCreator"></activity>
+            android:name=".PasswordCreator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-
-        <activity
-            android:name=".editAndView"></activity>
 
     </application>a
 
