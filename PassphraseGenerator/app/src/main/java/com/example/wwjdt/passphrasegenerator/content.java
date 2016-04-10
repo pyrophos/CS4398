@@ -50,8 +50,6 @@ public class content extends AppCompatActivity {
         accountList = (ListView) findViewById(R.id.ListView1);
         accountNameTxt = (EditText) findViewById(R.id.accountNameTxt);
         addButton = (Button) findViewById(R.id.addButton);
-        deleteButton = (Button) findViewById(R.id.deleteButton);
-        editAndViewButton = (Button) findViewById(R.id.editAndViewButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
 
