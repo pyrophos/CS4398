@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:hint="Search Account"
         android:focusable="true"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/addButton"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/ListView1"
