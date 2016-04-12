@@ -1,6 +1,7 @@
 package com.example.wwjdt.passphrasegenerator;
 
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -131,15 +133,17 @@ public class content extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View view, final int position, long id) {
 
                 String dialogName = pref.getString("AcctName[" + position + "]", "");
-                String dialogPass = pref.getString("AcctPass[" + position + "]", "");
+                final String dialogPass = pref.getString("AcctPass[" + position + "]", "");
 
                 final Dialog dialog = new Dialog(content.this);
                 dialog.setContentView(R.layout.content_dialog_box);
 
 
                 // set the custom dialog components - text, image and button
+                TextView text1 = (TextView) dialog.findViewById(R.id.text_view3);
+                text1.setText( "Password: ");
                 TextView text = (TextView) dialog.findViewById(R.id.text);
-                text.setText("Password: " + dialogPass + "");
+                text.setText( dialogPass);
                 TextView text_view2 = (TextView) dialog.findViewById(R.id.text_view2);
                 //text_view2.setText(dialogName);
                 SpannableString spanString = new SpannableString(dialogName);
@@ -170,6 +174,7 @@ public class content extends AppCompatActivity {
                 copyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        putText(dialogPass);
 
                     }
 
@@ -200,6 +205,17 @@ public class content extends AppCompatActivity {
             }
 
         });
+    }
+    public void putText(String dialogPass){
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if(sdk < android.os.Build.VERSION_CODES. HONEYCOMB) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(dialogPass);
+        } else {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = ClipData.newPlainText("simple text",dialogPass);
+            clipboard.setPrimaryClip(clip);
+        }
     }
     private void delete() {
         int pos = accountList.getCheckedItemPosition();
