@@ -211,10 +211,12 @@ public class content extends AppCompatActivity {
         if(sdk < android.os.Build.VERSION_CODES. HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(dialogPass);
+            Toast.makeText(getApplicationContext(), "Password Copied", Toast.LENGTH_SHORT).show();
         } else {
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = ClipData.newPlainText("simple text",dialogPass);
             clipboard.setPrimaryClip(clip);
+            Toast.makeText(getApplicationContext(), "Password Copied", Toast.LENGTH_SHORT).show();
         }
     }
     private void delete() {
