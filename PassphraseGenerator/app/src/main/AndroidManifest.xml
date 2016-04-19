@@ -32,6 +32,18 @@
             android:name=".PasswordCreator"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity android:name=".ReminderDate"
+            android:theme = "@style/AppTheme.NoActionBar" ></activity>
+
+        <activity android:name=".SecondActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <service android:name=".ScheduleService"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service android:name=".NotificationInfo"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
     </application>a
 
