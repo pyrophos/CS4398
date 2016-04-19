@@ -123,13 +123,13 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     }
     private void add()
     {
-        Log.i("Inside add function", "it works");
-        String acctName = passwordName.getText().toString();
-        Log.i("acctName", String.format("%s", acctName));
-        String passName = String.valueOf(credential.toString());
-        Log.i("passName", String.format("%s", passName));
-        if(!acctName.isEmpty() && acctName.length() > 0 && !passName.isEmpty() && passName.length() > 0) {
 
+        if(!passwordName.getText().toString().equals("") && credential != null) {
+            // Log.i("Inside add function", "it works");
+            String acctName = passwordName.getText().toString();
+            //Log.i("acctName", String.format("%s", acctName));
+            String passName = credential.toString();
+            //Log.i("passName", String.format("%s", passName));
             pref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
             spEditor = pref.edit();

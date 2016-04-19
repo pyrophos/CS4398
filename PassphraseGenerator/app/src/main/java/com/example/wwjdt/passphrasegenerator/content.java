@@ -242,12 +242,12 @@ public class content extends AppCompatActivity {
                     spEditor.putString("AcctName[" + i + "]", newActName);
                     Log.i("acctName", String.format("%s", newActName));
                     spEditor.putString("AcctPass[" + i + "]", PassActName);
-                    //spEditor.apply();
+                    spEditor.apply();
                 } else if (i == 0 || i == prefCount - 1) {
                     spEditor.remove("AcctName[" + i + "]");
                     spEditor.remove("AcctPass[" + i + "]");
 
-                    //spEditor.apply();
+                    spEditor.apply();
                 } else {
                     spEditor.remove("AcctPass[" + (i + 1) + "]");
                     spEditor.remove("AcctName[" + (i + 1) + "]");
