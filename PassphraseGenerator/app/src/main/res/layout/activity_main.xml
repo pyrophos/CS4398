@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/plainbackground"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="fill_parent"
@@ -11,15 +13,27 @@
 
     <DatePicker
         android:id="@+id/scheduleTimePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/selectButton"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onDateSelectedButtonClick"
-        android:text="Set notification for this date"
-        android:background="#f4995b" />
+        android:foregroundGravity="center|fill_horizontal|center_horizontal|fill"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:foregroundGravity="fill_horizontal|center_horizontal">
+
+        <Button
+            android:id="@+id/selectButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onDateSelectedButtonClick"
+            android:text="Save"
+            android:background="#f4995b"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 </LinearLayout>
