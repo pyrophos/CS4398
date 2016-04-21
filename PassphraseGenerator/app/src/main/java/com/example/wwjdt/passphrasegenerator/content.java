@@ -18,6 +18,8 @@ import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -137,6 +139,7 @@ public class content extends AppCompatActivity {
 
                 final Dialog dialog = new Dialog(content.this);
                 dialog.setContentView(R.layout.content_dialog_box);
+                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
                 // set the custom dialog components - text, image and button
@@ -197,10 +200,14 @@ public class content extends AppCompatActivity {
                     }
 
                 });
-
-
-                dialog.getWindow().setLayout(600, 400);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
                 dialog.show();
+                dialog.getWindow().setAttributes(lp);
+
+
 
             }
 

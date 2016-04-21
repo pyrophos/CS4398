@@ -6,8 +6,10 @@ package com.example.wwjdt.passphrasegenerator;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -20,6 +22,9 @@ import com.example.wwjdt.passphrasegenerator.ScheduleClient;
  * we then set a notification for that date to appear in the status bar
  */
 public class ReminderDate extends Activity  {
+
+    Button backbutton;
+
     // This is a handle so that we can call methods on our service
     private ScheduleClient scheduleClient;
     // This is the date picker used to select the date for our notification
@@ -37,6 +42,7 @@ public class ReminderDate extends Activity  {
 
         // Get a reference to our date picker
         picker = (android.widget.DatePicker) findViewById(R.id.scheduleTimePicker);
+
     }
 
     /**
@@ -58,7 +64,17 @@ public class ReminderDate extends Activity  {
         scheduleClient.setAlarmForNotification(c);
         // Notify the user what they just did
         Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
+
     }
+
+    public void setBackButton(View v){
+        onBackPressed();
+    }
+
+
+
+
+
 
     @Override
     protected void onStop() {
