@@ -18,6 +18,6 @@
     <string name="title_activity_content">content</string>
     <string name="title_activity_add_register">addRegister</string>
     <string name="title_activity_edit_info">editInfo</string>
-    <string name="hello">Welcome</string>
+    <string name="hello">Please select a Reminder Date</string>
 
 </resources>

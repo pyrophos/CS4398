@@ -22,18 +22,36 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center_vertical"
-        android:foregroundGravity="fill_horizontal|center_horizontal">
+        android:layout_gravity="right"
+        android:weightSum="1">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.19"></FrameLayout>
 
         <Button
             android:id="@+id/selectButton"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onDateSelectedButtonClick"
             android:text="Save"
-            android:background="#f4995b"
-            android:layout_gravity="center_horizontal" />
+            android:background="@drawable/button" />
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.62"></FrameLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/backButton"
+            android:nestedScrollingEnabled="false"
+            android:onClick="setBackButton"
+            android:allowUndo="true"
+            android:background="@drawable/button" />
     </LinearLayout>
 
 </LinearLayout>
