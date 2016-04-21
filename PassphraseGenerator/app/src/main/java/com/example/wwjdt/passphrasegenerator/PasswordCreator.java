@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -18,11 +17,9 @@ import android.widget.Toast;
 
 import com.edmodo.rangebar.RangeBar;
 
-import java.util.Random;
-
 public class PasswordCreator extends AppCompatActivity implements View.OnClickListener{
     private CheckBox caseSensitive, alphanumeric, specialCharacters;
-    private Button saveBtn, exitBtn, generateBtn, shuffleBtn;
+    private Button saveBtn, exitBtn, generateBtn, shuffleBtn, remindBtn;
     private EditText passwordName, minWords, maxWords;
     private TextView passwordDisplay, minChar, maxChar, numWordsText, numWordsDisplay;
     private WordModel wordModel = new WordModel();
@@ -63,6 +60,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         exitBtn = (Button) findViewById(R.id.exitBtn);
         generateBtn = (Button) findViewById(R.id.generateBtn);
         shuffleBtn = (Button) findViewById(R.id.shuffleBtn);
+        remindBtn = (Button) findViewById(R.id.remindBtn);
 
         //Edit Text Fields
         passwordName = (EditText) findViewById(R.id.passwordName);
@@ -85,6 +83,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
         shuffleBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
         exitBtn.setOnClickListener(this);
+        remindBtn.setOnClickListener(this);
 
         Log.i("Current mode", mode);
         if(mode.equals("edit")){
@@ -177,6 +176,9 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             case R.id.shuffleBtn: shuffle(); break;
             case R.id.saveBtn:
                 add();
+                break;
+            case R.id.remindBtn :
+                startActivity(new Intent(this, ReminderDate.class));
                 break;
             case R.id.exitBtn:
                 Intent intentExit = new Intent(this, content.class);
