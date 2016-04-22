@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.wwjdt.passphrasegenerator">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Login"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".content"
+            android:label="@string/title_activity_content"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".addRegister"
+            android:label="@string/title_activity_add_register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PasswordCreator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".ReminderDate"
+            android:theme = "@style/AppTheme.NoActionBar" ></activity>
+
+        <activity android:name=".SecondActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <service android:name=".ScheduleService"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service android:name=".NotificationInfo"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+    </application>a
+
+</manifest>
