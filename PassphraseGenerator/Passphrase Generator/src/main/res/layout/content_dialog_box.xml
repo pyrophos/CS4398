@@ -2,23 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="250dp"
     android:background="@drawable/plainbackground"
-    android:orientation="vertical" >
-
-    <TextView
-    android:id="@+id/text"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:singleLine="true"
-    android:focusable="true"
-    android:nextFocusDown="@+id/btn_edit"
-
-    android:layout_marginTop="95dp"
-    android:paddingLeft="85dp"
-    android:paddingRight="20dp"
-    android:textSize="15dp"
-    android:textColor="#B22222" />
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <Button
         android:id="@+id/btn_cancel"
@@ -48,31 +35,67 @@
         android:layout_marginEnd="33dp"
         android:layout_gravity="right" />
 
-    <Button
-        android:id="@+id/btn_edit"
-        android:layout_width="wrap_content"
+    <TableRow
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:clickable="true"
-        android:text="Edit"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_width="match_parent">
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="Edit"
+            android:textColor="#000000"
+            android:textStyle="bold"
+             />
+        <TextView
+            android:id="@+id/text_view3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_edit"
+            android:text = "TEST"
+            android:paddingLeft="55dp"
+            android:paddingRight="20dp"
+            android:textSize="20dp"
+            android:textColor="#B22222"
+            android:layout_below="@+id/text_view2"
+            android:layout_centerHorizontal="true" />
+        </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="Copy"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_below="@+id/btn_edit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_edit"
+            android:text="TESTING"
+                android:paddingLeft="55dp"
+            android:paddingRight="20dp"
+            android:textSize="15dp"
+            android:textColor="#B22222"
+            android:layout_below="@+id/btn_copy"
+            android:layout_alignRight="@+id/btn_cancel"
+            android:layout_alignEnd="@+id/btn_cancel" />
 
-    <Button
-        android:id="@+id/btn_copy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:clickable="true"
-        android:text="Copy"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:layout_below="@+id/btn_edit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
+    </TableRow>
 
     <Button
         android:id="@+id/btn_delete"
@@ -87,28 +110,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:id="@+id/text_view3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:focusable="true"
-        android:nextFocusDown="@+id/btn_edit"
-
-        android:layout_marginTop="70dp"
-        android:paddingLeft="85dp"
-        android:paddingRight="20dp"
-        android:textSize="20dp"
-        android:textColor="#B22222" />
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/btn_cancel"
-        android:layout_alignRight="@+id/btn_cancel"
-        android:layout_alignEnd="@+id/btn_cancel" />
+        android:layout_toLeftOf="@+id/btn_cancel"
+        android:layout_toStartOf="@+id/btn_cancel" />
 
 
 </LinearLayout>

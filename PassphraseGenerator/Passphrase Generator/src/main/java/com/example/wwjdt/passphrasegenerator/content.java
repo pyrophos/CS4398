@@ -1,5 +1,6 @@
 package com.example.wwjdt.passphrasegenerator;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Context;
@@ -138,9 +139,11 @@ public class content extends AppCompatActivity {
                 final String dialogPass = pref.getString("AcctPass[" + position + "]", "");
 
                 final Dialog dialog = new Dialog(content.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.content_dialog_box);
-                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+                dialog.show();
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
                 // set the custom dialog components - text, image and button
                 TextView text1 = (TextView) dialog.findViewById(R.id.text_view3);
@@ -200,15 +203,6 @@ public class content extends AppCompatActivity {
                     }
 
                 });
-
-                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-                lp.copyFrom(dialog.getWindow().getAttributes());
-                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-                dialog.show();
-                dialog.getWindow().setAttributes(lp);
-
 
 
             }
