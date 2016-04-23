@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.loginButton:
                 isLogin();
+
                 break;
             case R.id.registerButton:
                 startActivity(new Intent(this, addRegister.class));
@@ -79,6 +80,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, content.class);
                     intent.putExtra("user", unm);
                     startActivity(intent);
+                    finish();
 
                 } else if (res == 2) {
                     Toast.makeText(this, "Please Enter Valid Username/Password", Toast.LENGTH_LONG).show();
