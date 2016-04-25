@@ -19,13 +19,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".content"
+            android:name=".Content"
             android:label="@string/title_activity_content"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"
             />
         <activity
-            android:name=".addRegister"
+            android:name=".AddRegister"
             android:label="@string/title_activity_add_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

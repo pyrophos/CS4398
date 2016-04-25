@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.registerButton:
-                startActivity(new Intent(this, addRegister.class));
+                startActivity(new Intent(this, AddRegister.class));
                 break;
         }
 
@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (res == 0) {
                     Toast.makeText(this, "Please Register", Toast.LENGTH_LONG).show();
                 } else if (res == 1) {
-                    Intent intent = new Intent(this, content.class);
+                    Intent intent = new Intent(this, Content.class);
                     intent.putExtra("user", unm);
                     startActivity(intent);
                     finish();

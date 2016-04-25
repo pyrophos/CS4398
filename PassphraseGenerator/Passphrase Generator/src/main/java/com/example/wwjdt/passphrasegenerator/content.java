@@ -1,6 +1,5 @@
 package com.example.wwjdt.passphrasegenerator;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Context;
@@ -8,11 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -33,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-public class content extends AppCompatActivity {
+public class Content extends AppCompatActivity {
 
     ListView accountList;
     EditText accountNameTxt;
@@ -110,7 +105,7 @@ public class content extends AppCompatActivity {
         logoutButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(content.this, Login.class);
+                        Intent intent = new Intent(Content.this, Login.class);
                         startActivity(intent);
 
                     }
@@ -119,7 +114,7 @@ public class content extends AppCompatActivity {
         addButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(content.this, PasswordCreator.class);
+                        Intent intent = new Intent(Content.this, PasswordCreator.class);
                         Bundle acctAdd = new Bundle();
                         acctAdd.putString("user", MyPREFERENCES);
                         acctAdd.putString("mode", "add");
@@ -138,7 +133,7 @@ public class content extends AppCompatActivity {
                 String dialogName = pref.getString("AcctName[" + position + "]", "");
                 final String dialogPass = pref.getString("AcctPass[" + position + "]", "");
 
-                final Dialog dialog = new Dialog(content.this);
+                final Dialog dialog = new Dialog(Content.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.content_dialog_box);
                 dialog.show();
@@ -166,7 +161,7 @@ public class content extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(content.this, PasswordCreator.class);
+                        Intent intent = new Intent(Content.this, PasswordCreator.class);
                         Bundle acctEdit = new Bundle();
                         acctEdit.putString("user", MyPREFERENCES);
                         acctEdit.putInt("pos", position);
@@ -265,7 +260,7 @@ public class content extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "No account to Delete ", Toast.LENGTH_SHORT).show();
         }
-        Intent intent = new Intent(content.this, content.class);
+        Intent intent = new Intent(Content.this, Content.class);
         intent.putExtra("user", MyPREFERENCES);
         startActivity(intent);
 

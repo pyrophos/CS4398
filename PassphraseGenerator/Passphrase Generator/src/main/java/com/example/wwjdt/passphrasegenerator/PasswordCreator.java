@@ -162,7 +162,7 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(getApplicationContext(), "Account & Password Not Added ", Toast.LENGTH_SHORT).show();
         }
 
-        Intent intent = new Intent(this, content.class);
+        Intent intent = new Intent(this, Content.class);
         intent.putExtra("user", MyPREFERENCES);
         startActivity(intent);
         finish();
@@ -181,39 +181,46 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(this, ReminderDate.class));
                 break;
             case R.id.exitBtn:
-                Intent intentExit = new Intent(this, content.class);
+                Intent intentExit = new Intent(this, Content.class);
                 intentExit.putExtra("user", MyPREFERENCES);
                 startActivity(intentExit);
                 break;
         }
     }
 
-    public Credential generatePassword(){
+  /**
+   * Generates the Credential.
+   * @return The generated Credential.
+   */
+  private Credential generatePassword(){
 
+      Credential credential = new Credential(numWords, maxWordLength, minWordLength, wordModel);
 
-        Credential credential = new Credential(numWords, maxWordLength, minWordLength, wordModel);
+      for(int i = 0; i < numWords; i++){
+          credential.addWord();
+      }
 
-        for(int i = 0; i < numWords; i++){
-            credential.addWord();
-        }
+      if(caseSensitive.isChecked()){
+          credential.makeCaseSensitive();
+      }
 
-        if(caseSensitive.isChecked()){
-            credential.makeCaseSensitive();
-        }
+      if(alphanumeric.isChecked()){
+          credential.appendNumber();
+      }
 
-        if(alphanumeric.isChecked()){
-            credential.appendNumber();
-        }
+      if(specialCharacters.isChecked()){
+          credential.appendSpecialCharacter();
+      }
+      passwordDisplay.setText(credential.toString());
 
-        if(specialCharacters.isChecked()){
-            credential.appendSpecialCharacter();
-        }
-        passwordDisplay.setText(credential.toString());
-
-        return credential;
+      return credential;
     }
 
-    public Credential shuffle(){
+  /**
+   * Shuffles the order of the words in the credential.
+   * @return The credential.
+   */
+  private Credential shuffle(){
         credential.shuffleCredential();
         passwordDisplay.setText(credential.toString());
 

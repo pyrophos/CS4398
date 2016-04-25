@@ -1,17 +1,12 @@
 package com.example.wwjdt.passphrasegenerator;
 
-/**
- * Created by mdelrio on 4/18/2016.
- */
-        import java.util.Calendar;
+import java.util.Calendar;
 
-        import android.app.Service;
-        import android.content.Intent;
-        import android.os.Binder;
-        import android.os.IBinder;
-        import android.util.Log;
-
-        import com.example.wwjdt.passphrasegenerator.AlarmTask;
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+import android.util.Log;
 
 public class ScheduleService extends Service {
 

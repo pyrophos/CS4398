@@ -11,10 +11,6 @@ import java.util.Random;
 
 public class CredentialTest{
 
-  ArrayList<String> testDictionary = new ArrayList<>(Arrays.asList("dog", "cat", "horse",
-      "building", "dictionary", "american", "german", "chair", "awesome", "library", "credential",
-      "purple", "blue", "green", "yellow", "white", "black"));
-  PasswordCreator testPasswordCreator = new PasswordCreator();
   WordModel testWordModel = new WordModel();
 
   String getRandomWord()
@@ -34,7 +30,6 @@ public class CredentialTest{
       testWordModel.addWord(getRandomWord());
     }
   }
-
 
 
   @Before
@@ -148,7 +143,7 @@ public class CredentialTest{
     Assert.assertEquals(numWords, testCredential.getNumWords());
     Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
     Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    Assert.assertTrue(testCredential.getNumCharacters() >= numWords * minCharacters);
 
     // Add words to the credential
     for (int i = 0; i <= 100; i++)
@@ -156,9 +151,8 @@ public class CredentialTest{
       Assert.assertEquals(numWords, testCredential.getNumWords());
       Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
       Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-      Assert.assertTrue(testCredential.getNumCharacters() > 0 );
+      Assert.assertTrue(testCredential.getNumCharacters() > 0);
     }
-
   }
 
   @Test
@@ -192,6 +186,23 @@ public class CredentialTest{
     numWords++;
     testCredential.appendSpecialCharacter();
     numWords++;
+    Assert.assertEquals(numWords, testCredential.getNumWords());
+    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
+    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
+    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+  }
+
+  @Test
+  public void credentialTest10() {
+    int numWords = 4;
+    int maxCharacters = 8;
+    int minCharacters = 3;
+    Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
+    for(int i = 0; i < numWords; i++){
+      testCredential.addWord();
+    }
+    testCredential.alternateCase();
+    testCredential.munge();
     Assert.assertEquals(numWords, testCredential.getNumWords());
     Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
     Assert.assertEquals(minCharacters, testCredential.getMinCharacters());

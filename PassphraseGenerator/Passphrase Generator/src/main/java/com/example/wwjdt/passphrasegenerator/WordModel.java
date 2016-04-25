@@ -15,14 +15,15 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
-/**
- *
- */
 public class WordModel
 {
   private final ArrayList<String> wordList = new ArrayList<>();
   Random rand = new Random(System.currentTimeMillis());
 
+  /**
+   * Loads the words from dictionary file.
+   * @param c The context of the application view.
+   */
   public void loadWords(Context c)
   {
     BufferedReader reader = null;
@@ -91,7 +92,7 @@ public class WordModel
    *
    * @return
    */
-  private String randomWord()
+  private String randomString()
   {
     return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
   }

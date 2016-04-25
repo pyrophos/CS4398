@@ -1,14 +1,11 @@
 package com.example.wwjdt.passphrasegenerator;
 
-/**
- * Created by mdelrio on 4/18/2016.
- */
-        import java.util.Calendar;
+import java.util.Calendar;
 
-        import android.app.AlarmManager;
-        import android.app.PendingIntent;
-        import android.content.Context;
-        import android.content.Intent;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 
 /**
  * Set an alarm for the date passed into the constructor

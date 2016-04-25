@@ -1,13 +1,10 @@
 package com.example.wwjdt.passphrasegenerator;
 
-/**
- * Created by mdelrio on 4/18/2016.
- */
-        import android.app.Notification;
-        import android.app.NotificationManager;
-        import android.content.BroadcastReceiver;
-        import android.content.Context;
-        import android.content.Intent;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 
 public class NotificationPublisher extends BroadcastReceiver {
 

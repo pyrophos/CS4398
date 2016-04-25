@@ -19,10 +19,6 @@ public class Credential
   private int minCharacters;
   private int numCharacters;
   private int totalCharacters;
-  private int strengthTotal;
-  private boolean hasNumbers;
-  private boolean hasSpecialChars;
-  private boolean hasUpperCaseChars;
 
   WordModel wordModel = new WordModel();
 
@@ -53,6 +49,7 @@ public class Credential
   public void addWord(){
       Word word = new Word(wordModel.getRandomWord(minCharacters, maxCharacters));
       credential.add(word);
+      totalCharacters =+ word.getWord().length();
   }
 
   @Override
@@ -85,6 +82,17 @@ public class Credential
       credential.add(word);
   }
 
+  public void munge(){
+    for(int i = 0; i < credential.size(); i++){
+      credential.get(i).munge();
+    }
+  }
+
+  public void alternateCase(){
+    for(int i = 0; i < credential.size(); i++){
+      credential.get(i).alternateCaps();
+    }
+  }
 
   /**
    * Gets the current number of words in the credential.

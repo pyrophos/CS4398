@@ -1,15 +1,12 @@
 package com.example.wwjdt.passphrasegenerator;
 
-/**
- * Created by mdelrio on 4/18/2016.
- */
-        import java.util.Calendar;
+import java.util.Calendar;
 
-        import android.content.ComponentName;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.content.ServiceConnection;
-        import android.os.IBinder;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 
 /**
  * This is our service client, it is the 'middle-man' between the

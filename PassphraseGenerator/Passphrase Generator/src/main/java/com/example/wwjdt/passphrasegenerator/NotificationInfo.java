@@ -1,18 +1,14 @@
 package com.example.wwjdt.passphrasegenerator;
 
-/**
- * Created by mdelrio on 4/18/2016.
- */
-
-        import android.app.Notification;
-        import android.app.NotificationManager;
-        import android.app.PendingIntent;
-        import android.app.Service;
-        import android.content.Intent;
-        import android.os.Binder;
-        import android.os.IBinder;
-        import android.support.v4.app.NotificationCompat;
-        import android.util.Log;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 /**
  * This service is started when an Alarm has been raised

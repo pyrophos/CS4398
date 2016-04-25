@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.wwjdt.utils.Constants;
 
-public class addRegister extends AppCompatActivity implements View.OnClickListener {
+public class AddRegister extends AppCompatActivity implements View.OnClickListener {
     private Button registerButton, backButton;
     private EditText editUsername, editPassword, textView;
     private String MyPREFERENCES;

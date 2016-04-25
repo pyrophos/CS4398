@@ -40,11 +40,30 @@ public class Word
   {
     for (int i=0; i < word.length(); i++)
     {
-      if (2%i == 0)
+      if (i%2 == 0)
       {
         word = word.substring(0,i).toUpperCase();
       }
     }
+  }
+
+  /**
+   * Simple replacement of specific letters with numbers or symbols to increase entropy.
+   */
+  public void munge()
+  {
+    word = word.replaceAll("o","0");
+    word = word.replaceAll("t","7");
+    word = word.replaceAll("a","@");
+    word = word.replaceAll("l","1");
+    word = word.replaceAll("s","\\$");
+    word = word.replaceAll("g","9");
+    word = word.replaceAll("e","3");
+    word = word.replaceAll("h","#");
+    word = word.replaceAll("w","uu");
+    word = word.replaceAll("x","%");
+    word = word.replaceAll("i","!");
+    word = word.replaceAll("b","8");
   }
 
   /**

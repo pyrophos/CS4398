@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.wwjdt.passphrasegenerator.addRegister"
+    tools:context=".AddRegister"
     android:background="@drawable/darkbackground">
 
 
@@ -57,13 +57,12 @@
         android:id="@+id/editPassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Username:"
+        android:hint="Password:"
         android:textColorHint="#FF9A9A9A"
         android:textColor="#FF00C4FF"
         android:singleLine="true"
         android:focusable="true"
-        android:nextFocusDown="@+id/editPassword"
-        android:text="Password"
+        android:nextFocusDown="@+id/registerButton"
         android:layout_above="@+id/backButton"
         android:layout_alignRight="@+id/backButton"
         android:layout_alignEnd="@+id/backButton" />
