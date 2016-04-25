@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/darkbackground"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_gravity="right"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/text_view2"
+        android:text="Font size 25dp "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF00C4FF"
+
+        android:layout_alignBottom="@+id/btn_cancel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_gravity="right" />
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:text="Edit"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        />
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/btn_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="Copy"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_below="@+id/btn_edit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text_view3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_edit"
+            android:text = "TEST"
+            android:paddingLeft="35dp"
+            android:paddingRight="20dp"
+            android:textSize="20dp"
+            android:textColor="#FF00C4FF"
+            android:layout_below="@+id/text_view2"
+            android:layout_centerHorizontal="true" />
+        </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="Delete"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_below="@+id/btn_copy"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_edit"
+            android:text="TESTING"
+                android:paddingLeft="35dp"
+            android:paddingRight="20dp"
+            android:textSize="15dp"
+            android:textColor="#FF00C4FF"
+            android:layout_below="@+id/btn_copy"
+            android:layout_alignRight="@+id/btn_cancel"
+            android:layout_alignEnd="@+id/btn_cancel" />
+
+
+    </TableRow>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btn_cancel"
+        android:layout_toStartOf="@+id/btn_cancel" />
+
+
+</LinearLayout>
