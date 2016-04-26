@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class CredentialTest{
+public class CredentialTest {
 
   WordModel testWordModel = new WordModel();
 
