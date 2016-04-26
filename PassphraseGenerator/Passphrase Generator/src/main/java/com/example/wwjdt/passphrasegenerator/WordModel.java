@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * The word model class.
+ */
 public class WordModel
 {
   private final ArrayList<String> wordList = new ArrayList<>();

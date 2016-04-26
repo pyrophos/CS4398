@@ -1,5 +1,8 @@
 package com.example.wwjdt.passphrasegenerator;
 
+/**
+ * This is a container class to hold word text for the credential.  Words can then be shuffled later.
+ */
 public class Word
 {
   private String word;
