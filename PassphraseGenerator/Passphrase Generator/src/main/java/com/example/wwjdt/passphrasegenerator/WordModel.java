@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class WordModel
 {
   private final ArrayList<String> wordList = new ArrayList<>();
-  Random rand = new Random(System.currentTimeMillis());
+  SecureRandom rand = new SecureRandom();
 
   /**
    * Loads the words from dictionary file.
