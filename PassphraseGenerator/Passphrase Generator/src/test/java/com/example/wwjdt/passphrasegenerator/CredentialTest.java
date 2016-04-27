@@ -1,17 +1,15 @@
 package com.example.wwjdt.passphrasegenerator;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static org.junit.Assert.*;
 
 /**
  * The following tests the credential generator.
@@ -64,10 +62,9 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() == 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertEquals(testCredential.toString().length(), testCredential.getNumCharacters());
+    assertTrue(testCredential.getNumCharacters() == (minCharacters*numWords));
   }
 
   /**
@@ -83,10 +80,8 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() >= (minCharacters*numWords));
   }
 
   /**
@@ -102,14 +97,12 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() >= (minCharacters*numWords));
   }
 
   /**
-   * Tests that if four word is requested for a credential, only four word is generated, along with
+   * Tests that if four words are requested for a credential, only four words are generated, along with
    * the number of words, max characters, min characters and total characters.
    */
   @Test
@@ -121,10 +114,8 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
   }
 
   /**
@@ -140,10 +131,8 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
   }
 
   /**
@@ -158,10 +147,8 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
   }
 
   /**
@@ -177,19 +164,15 @@ public class CredentialTest {
     for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() >= numWords * minCharacters);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
 
     // Add words to the credential
     for (int i = 0; i <= 100; i++) {
       testCredential.addWord();
       numWords++;
-      Assert.assertEquals(numWords, testCredential.getNumWords());
-      Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-      Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-      Assert.assertTrue(testCredential.getNumCharacters() > 0);
+      assertEquals(numWords, testCredential.getNumWords());
+      assertTrue(testCredential.getNumCharacters() > 0);
     }
   }
 
@@ -214,13 +197,11 @@ public class CredentialTest {
       count++;
     }
     // Initially there should be no uppercase letters
-    Assert.assertEquals(0, count);
+    assertEquals(0, count);
 
     testCredential.makeCaseSensitive();
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
 
     // Use a regular expression to check the number of uppercase letters in the credential.
     pattern = Pattern.compile("[A-Z]");
@@ -230,7 +211,7 @@ public class CredentialTest {
       count++;
     }
     // There should be as many uppercase letters as there are words in the credential
-    Assert.assertEquals(count, testCredential.getNumWords());
+    assertEquals(count, testCredential.getNumWords());
   }
 
   /**
@@ -251,10 +232,8 @@ public class CredentialTest {
     numWords++;
     testCredential.appendSpecialCharacter();
     numWords++;
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
   }
 
   /**
@@ -271,10 +250,8 @@ public class CredentialTest {
     }
     testCredential.alternateCase();
     testCredential.munge();
-    Assert.assertEquals(numWords, testCredential.getNumWords());
-    Assert.assertEquals(maxCharacters, testCredential.getMaxCharacters());
-    Assert.assertEquals(minCharacters, testCredential.getMinCharacters());
-    Assert.assertTrue(testCredential.getNumCharacters() > 0);
+    assertEquals(numWords, testCredential.getNumWords());
+    assertTrue(testCredential.getNumCharacters() > 0);
   }
 
   /**
@@ -283,12 +260,12 @@ public class CredentialTest {
   @Test
   public void credentialTest11() {
     ArrayList<Credential> credentials = new ArrayList<>();
-    int numWords = 4;
-    int maxCharacters = 8;
-    int minCharacters = 3;
+    int numWords = 3;
+    int maxCharacters = 20;
+    int minCharacters = 0;
     for (int i = 0; i < 2000000; i++) {
       Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-      for (int j = 0; i < numWords; i++) {
+      for (int j = 0; j < numWords; j++) {
         testCredential.addWord();
       }
       credentials.add(testCredential);
@@ -297,7 +274,7 @@ public class CredentialTest {
     // Since a set cannot have duplicates, here we are converting the ArrayList to a set and then
     // check that the size of the set and arraylist are the same.
     Set<Credential> testSet = new HashSet<>(credentials);
-    Assert.assertEquals(credentials.size(), testSet.size());
+    assertEquals(credentials.size(), testSet.size());
   }
 
 }
