@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.edmodo.rangebar.RangeBar;
 
+/**
+ * The type Password creator.
+ */
 public class PasswordCreator extends AppCompatActivity implements View.OnClickListener{
     private CheckBox caseSensitive, alphanumeric, specialCharacters;
     private Button saveBtn, exitBtn, generateBtn, shuffleBtn, remindBtn;
@@ -27,11 +30,29 @@ public class PasswordCreator extends AppCompatActivity implements View.OnClickLi
     private RangeBar minMaxCharBar;
     private SeekBar numWordsBar;
     private int minWordLength = 3, maxWordLength = 8, numWords = 3;
+    /**
+     * The My preferences.
+     */
     public String MyPREFERENCES;
+    /**
+     * The Pos.
+     */
     public int pos;
+    /**
+     * The Mode.
+     */
     public String mode;
+    /**
+     * The Editacct.
+     */
     public String editacct;
+    /**
+     * The Pref.
+     */
     SharedPreferences pref;
+    /**
+     * The Sp editor.
+     */
     SharedPreferences.Editor spEditor;
 
     @Override

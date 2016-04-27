@@ -15,7 +15,10 @@ import android.widget.Toast;
  */
 public class ReminderDate extends Activity  {
 
-    Button backbutton;
+  /**
+   * The Backbutton.
+   */
+  Button backbutton;
 
     // This is a handle so that we can call methods on our service
     private ScheduleClient scheduleClient;
@@ -36,10 +39,12 @@ public class ReminderDate extends Activity  {
         picker = (android.widget.DatePicker) findViewById(R.id.scheduleTimePicker);
     }
 
-    /**
-     * This is the onClick called from the XML to set a new notification
-     */
-    public void onDateSelectedButtonClick(View v){
+  /**
+   * This is the onClick called from the XML to set a new notification
+   *
+   * @param v the v
+   */
+  public void onDateSelectedButtonClick(View v){
         // Get the date from our datepicker
         int day = picker.getDayOfMonth();
         int month = picker.getMonth();
@@ -57,7 +62,12 @@ public class ReminderDate extends Activity  {
         Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
     }
 
-    public void setBackButton(View v){
+  /**
+   * Set back button.
+   *
+   * @param v the v
+   */
+  public void setBackButton(View v){
         onBackPressed();
     }
 

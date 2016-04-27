@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * The type Credential.
+ */
 public class Credential
 {
   // Container for the words
@@ -20,18 +23,19 @@ public class Credential
   private int numCharacters;
   private int totalCharacters;
 
+  /**
+   * The Word model.
+   */
   WordModel wordModel = new WordModel();
 
 
   /**
    * Constructor for the credential.
    *
-   * @param maxCharacters The maximum number of characters the credential
-   *                      should contain.
-   * @param minCharacters The minimum number of characters the credential
-   *                      should contain.
    * @param numWords      The number of words the credential should
-
+   * @param maxCharacters The maximum number of characters the credential                      should contain.
+   * @param minCharacters The minimum number of characters the credential                      should contain.
+   * @param wordModel     the word model
    */
   public Credential(final int numWords,
                     final int maxCharacters, final int minCharacters, WordModel wordModel)
@@ -61,12 +65,18 @@ public class Credential
       return credentialString;
   }
 
+  /**
+   * Make case sensitive.
+   */
   public void makeCaseSensitive(){
       for(int i = 0; i < credential.size(); i++){
           credential.get(i).capitalize();
       }
   }
 
+  /**
+   * Append special character.
+   */
   public void appendSpecialCharacter(){
       final String specialCharacters = "@#+\\/!#$^?:.(){}[]~-_";
       Random rand = new Random();
@@ -75,6 +85,9 @@ public class Credential
       credential.add(word);
   }
 
+  /**
+   * Append number.
+   */
   public void appendNumber(){
       Random rand = new Random();
       String randNumber = Integer.toString(rand.nextInt(9)+1);
@@ -82,12 +95,18 @@ public class Credential
       credential.add(word);
   }
 
+  /**
+   * Munge.
+   */
   public void munge(){
     for(int i = 0; i < credential.size(); i++){
       credential.get(i).munge();
     }
   }
 
+  /**
+   * Alternate case.
+   */
   public void alternateCase(){
     for(int i = 0; i < credential.size(); i++){
       credential.get(i).alternateCaps();
@@ -97,7 +116,7 @@ public class Credential
   /**
    * Gets the current number of words in the credential.
    *
-   * @return  The number of words within the credential.
+   * @return The number of words within the credential.
    */
   public int getNumWords(){
       return credential.size();
@@ -106,7 +125,7 @@ public class Credential
   /**
    * Gets the number of characters within the credential.
    *
-   * @return  The number of characters within the credential.
+   * @return The number of characters within the credential.
    */
   public int getNumCharacters()
   {
@@ -116,7 +135,7 @@ public class Credential
   /**
    * Determines if the credential
    *
-   * @return  Returns the status of the filling of the credential.
+   * @return Returns the status of the filling of the credential.
    */
   public Boolean isFull()
   {
@@ -126,7 +145,7 @@ public class Credential
   /**
    * Gets the maximum number of words for the credential.
    *
-   * @return  The maximum number of words for the credential.
+   * @return The maximum number of words for the credential.
    */
   public int getMaxWords()
   {
@@ -136,7 +155,7 @@ public class Credential
   /**
    * Gets the minimum number of words for the credential.
    *
-   * @return  The minimum number of words for the credential.
+   * @return The minimum number of words for the credential.
    */
   public int getMinWords()
   {
@@ -146,7 +165,7 @@ public class Credential
   /**
    * Gets the maximum number of characters for the credential.
    *
-   * @return  The maximum number of characters for the credential.
+   * @return The maximum number of characters for the credential.
    */
   public int getMaxCharacters()
   {
@@ -156,13 +175,18 @@ public class Credential
   /**
    * Gets the minimum number of characters for the credential.
    *
-   * @return  The minimum number of characters for the credential.
+   * @return The minimum number of characters for the credential.
    */
   public int getMinCharacters()
   {
     return this.minCharacters;
   }
 
+  /**
+   * Sets max words.
+   *
+   * @param maxWords the max words
+   */
   public void setMaxWords(final int maxWords)
   {
     this.maxWords = maxWords;
@@ -171,7 +195,7 @@ public class Credential
   /**
    * Sets the minimum number of words for the credential.
    *
-   * @param minWords  The minimum number of words for the credential.
+   * @param minWords The minimum number of words for the credential.
    */
   public void setMinWords(final int minWords)
   {
@@ -181,7 +205,7 @@ public class Credential
   /**
    * Sets the maximum number of characters for the credential.
    *
-   * @param maxCharacters  The maximum number of characters for the credential.
+   * @param maxCharacters The maximum number of characters for the credential.
    */
   public void setMaxCharacters(final int maxCharacters)
   {
@@ -191,7 +215,7 @@ public class Credential
   /**
    * Sets the minimum number of characters for the credential.
    *
-   * @param minCharacters  The minimum number of characters for the credential.
+   * @param minCharacters The minimum number of characters for the credential.
    */
   public void setMinCharacters(final int minCharacters)
   {

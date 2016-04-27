@@ -12,11 +12,20 @@ import android.widget.Toast;
 
 import com.example.wwjdt.utils.Constants;
 
+/**
+ * The type Add register.
+ */
 public class AddRegister extends AppCompatActivity implements View.OnClickListener {
     private Button registerButton, backButton;
     private EditText editUsername, editPassword, textView;
     private String MyPREFERENCES;
+    /**
+     * The Pref.
+     */
     SharedPreferences pref;
+    /**
+     * The Edit.
+     */
     SharedPreferences. Editor edit;
 
     @Override

@@ -6,9 +6,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * The type Notification publisher.
+ */
 public class NotificationPublisher extends BroadcastReceiver {
 
+    /**
+     * The constant NOTIFICATION_ID.
+     */
     public static String NOTIFICATION_ID = "notification-id";
+    /**
+     * The constant NOTIFICATION.
+     */
     public static String NOTIFICATION = "notification";
 
     public void onReceive(Context context, Intent intent) {

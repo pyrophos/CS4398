@@ -12,11 +12,9 @@ import android.util.Log;
 
 /**
  * This service is started when an Alarm has been raised
- *
+ * <p/>
  * We pop a notification into the status bar for the user to click on
  * When the user clicks the notification a new activity is opened
- *
- *
  */
 public class NotificationInfo extends Service {
 
@@ -24,6 +22,11 @@ public class NotificationInfo extends Service {
      * Class for clients to access
      */
     public class ServiceBinder extends Binder {
+        /**
+         * Gets service.
+         *
+         * @return the service
+         */
         NotificationInfo getService() {
             return NotificationInfo.this;
         }
@@ -31,7 +34,10 @@ public class NotificationInfo extends Service {
 
     // Unique id to identify the notification.
     private static final int NOTIFICATION = 123;
-    // Name of an intent extra we can use to identify if this service was started to create a notification
+    /**
+     * The constant INTENT_NOTIFY.
+     */
+// Name of an intent extra we can use to identify if this service was started to create a notification
     public static final String INTENT_NOTIFY = "com.example.wwjdt.passphrase.INTENT_NOTIFY";
     // The system notification manager
     private NotificationManager mNM;

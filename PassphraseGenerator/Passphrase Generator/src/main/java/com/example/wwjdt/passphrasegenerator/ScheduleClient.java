@@ -11,7 +11,6 @@ import android.os.IBinder;
 /**
  * This is our service client, it is the 'middle-man' between the
  * service and any activity that wants to connect to the service
- *
  */
 public class ScheduleClient {
 
@@ -22,6 +21,11 @@ public class ScheduleClient {
     // A flag if we are connected to the service or not
     private boolean mIsBound;
 
+    /**
+     * Instantiates a new Schedule client.
+     *
+     * @param context the context
+     */
     public ScheduleClient(Context context) {
         mContext = context;
     }
@@ -53,6 +57,7 @@ public class ScheduleClient {
 
     /**
      * Tell our service to set an alarm for the given date
+     *
      * @param c a date to set the notification for
      */
     public void setAlarmForNotification(Calendar c){

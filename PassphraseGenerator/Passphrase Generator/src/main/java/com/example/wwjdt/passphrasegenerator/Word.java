@@ -10,7 +10,7 @@ public class Word
   /**
    * Constructor for the word object.
    *
-   * @param word  The string to place into the word object.
+   * @param word The string to place into the word object.
    */
   Word(String word)
   {
@@ -26,6 +26,8 @@ public class Word
 
   /**
    * Returns word from word object
+   *
+   * @return the string
    */
   public String getWord(){return this.word;}
 

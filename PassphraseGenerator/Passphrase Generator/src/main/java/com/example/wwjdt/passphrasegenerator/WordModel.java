@@ -22,10 +22,14 @@ import java.util.UUID;
 public class WordModel
 {
   private final ArrayList<String> wordList = new ArrayList<>();
+  /**
+   * The Rand.
+   */
   SecureRandom rand = new SecureRandom();
 
   /**
    * Loads the words from dictionary file.
+   *
    * @param c The context of the application view.
    */
   public void loadWords(Context c)
@@ -56,7 +60,7 @@ public class WordModel
   /**
    * Adds a word to the list of words.
    *
-   * @param word  The word to add.
+   * @param word The word to add.
    */
   public void addWord(final String word)
   {
@@ -66,7 +70,9 @@ public class WordModel
   /**
    * Returns a random word from the list of words.
    *
-   * @return  A word string.
+   * @param minChar the min char
+   * @param maxChar the max char
+   * @return A word string.
    */
   public String getRandomWord(int minChar, int maxChar)
   {

@@ -8,12 +8,20 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+/**
+ * The type Schedule service.
+ */
 public class ScheduleService extends Service {
 
     /**
      * Class for clients to access
      */
     public class ServiceBinder extends Binder {
+        /**
+         * Gets service.
+         *
+         * @return the service
+         */
         ScheduleService getService() {
             return ScheduleService.this;
         }
@@ -37,6 +45,8 @@ public class ScheduleService extends Service {
 
     /**
      * Show an alarm for a certain date when the alarm is called it will pop up a notification
+     *
+     * @param c the c
      */
     public void setAlarm(Calendar c) {
         // This starts a new thread to set the alarm

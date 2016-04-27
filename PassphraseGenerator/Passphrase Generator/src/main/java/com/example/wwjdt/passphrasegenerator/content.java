@@ -28,18 +28,54 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The type Content.
+ */
 public class Content extends AppCompatActivity {
 
+    /**
+     * The Account list.
+     */
     ListView accountList;
+    /**
+     * The Account name txt.
+     */
     EditText accountNameTxt;
-    Button addButton, logoutButton;
+    /**
+     * The Add button.
+     */
+    Button addButton, /**
+     * The Logout button.
+     */
+    logoutButton;
+    /**
+     * The Accountnames.
+     */
     ArrayList<String> accountnames = new ArrayList<String>();
+    /**
+     * The Account pass.
+     */
     ArrayList<String> accountPass = new ArrayList<String>();
+    /**
+     * The Adapter.
+     */
     ArrayAdapter<String> adapter;
 
+    /**
+     * The My preferences.
+     */
     public String MyPREFERENCES;
+    /**
+     * The Pref.
+     */
     SharedPreferences pref;
+    /**
+     * The Sp editor.
+     */
     SharedPreferences.Editor spEditor;
+    /**
+     * The Count.
+     */
     int count = 0;
 
     @Override
@@ -204,6 +240,12 @@ public class Content extends AppCompatActivity {
 
         });
     }
+
+    /**
+     * Put text.
+     *
+     * @param dialogPass the dialog pass
+     */
     public void putText(String dialogPass){
         int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES. HONEYCOMB) {

@@ -13,11 +13,17 @@ import android.widget.Toast;
 
 import com.example.wwjdt.utils.Constants;
 
+/**
+ * The type Login.
+ */
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private Button loginButton, registerButton;
     private EditText editUsername, editPassword;
     private String MyPREFERENCES;
+    /**
+     * The Pref.
+     */
     SharedPreferences pref;
 
     @Override
@@ -89,6 +95,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+
+    /**
+     * Check login int.
+     *
+     * @param unm the unm
+     * @param pwd the pwd
+     * @return the int
+     */
     public int checkLogin(String unm, String pwd)
     {
         String ppwd = pref.getString(Constants.KEY_PWD, "");

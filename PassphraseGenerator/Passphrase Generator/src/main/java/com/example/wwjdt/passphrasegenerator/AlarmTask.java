@@ -10,11 +10,10 @@ import android.content.Intent;
 /**
  * Set an alarm for the date passed into the constructor
  * When the alarm is raised it will start the NotificationInfo
- *
+ * <p/>
  * This uses the android build in alarm manager *NOTE* if the phone is turned off this alarm will be cancelled
- *
+ * <p/>
  * This will run on it's own thread.
-
  */
 public class AlarmTask implements Runnable{
     // The date selected for the alarm
@@ -24,6 +23,12 @@ public class AlarmTask implements Runnable{
     // Your context to retrieve the alarm manager from
     private final Context context;
 
+    /**
+     * Instantiates a new Alarm task.
+     *
+     * @param context the context
+     * @param date    the date
+     */
     public AlarmTask(Context context, Calendar date) {
         this.context = context;
         this.am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
