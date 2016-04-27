@@ -24,11 +24,10 @@ public class CredentialTest {
    * Generates a random word.
    * @return
    */
-  String getRandomWord()
-  {
+  String getRandomWord() {
     Random rand = new Random(System.currentTimeMillis());
     String r = "";
-    for(int i = 0; i < rand.nextInt(20) + 1; i++) {
+    for (int i = 0; i < rand.nextInt(20) + 1; i++) {
       r += (char)(Math.random() * 26 + 97);
     }
     return r;
@@ -37,10 +36,8 @@ public class CredentialTest {
   /**
    * Adds words to the test WordModel.
    */
-  private void customLoadWords()
-  {
-    for (int i = 0; i < 20000; i++)
-    {
+  private void customLoadWords() {
+    for (int i = 0; i < 20000; i++) {
       testWordModel.addWord(getRandomWord());
     }
   }
@@ -64,7 +61,7 @@ public class CredentialTest {
     int maxCharacters = 0;
     int minCharacters = 0;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -83,7 +80,7 @@ public class CredentialTest {
     int maxCharacters = 8;
     int minCharacters = 0;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -102,7 +99,7 @@ public class CredentialTest {
     int maxCharacters = 3;
     int minCharacters = 3;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -121,7 +118,7 @@ public class CredentialTest {
     int maxCharacters = 8;
     int minCharacters = 3;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -140,7 +137,7 @@ public class CredentialTest {
     int maxCharacters = 8;
     int minCharacters = 3;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -158,7 +155,7 @@ public class CredentialTest {
     int maxCharacters = 100;
     int minCharacters = 1;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -177,7 +174,7 @@ public class CredentialTest {
     int minCharacters = 1;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
 
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -186,8 +183,7 @@ public class CredentialTest {
     Assert.assertTrue(testCredential.getNumCharacters() >= numWords * minCharacters);
 
     // Add words to the credential
-    for (int i = 0; i <= 100; i++)
-    {
+    for (int i = 0; i <= 100; i++) {
       testCredential.addWord();
       numWords++;
       Assert.assertEquals(numWords, testCredential.getNumWords());
@@ -206,7 +202,7 @@ public class CredentialTest {
     int maxCharacters = 100;
     int minCharacters = 1;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
 
@@ -214,9 +210,10 @@ public class CredentialTest {
     Pattern pattern = Pattern.compile("[A-Z]");
     Matcher matcher = pattern.matcher(testCredential.toString());
     int count = 0;
-    while(matcher.find()) {
+    while (matcher.find()) {
       count++;
     }
+    // Initially there should be no uppercase letters
     Assert.assertEquals(0, count);
 
     testCredential.makeCaseSensitive();
@@ -229,9 +226,10 @@ public class CredentialTest {
     pattern = Pattern.compile("[A-Z]");
     matcher = pattern.matcher(testCredential.toString());
     count = 0;
-    while(matcher.find()) {
+    while (matcher.find()) {
       count++;
     }
+    // There should be as many uppercase letters as there are words in the credential
     Assert.assertEquals(count, testCredential.getNumWords());
   }
 
@@ -244,7 +242,7 @@ public class CredentialTest {
     int maxCharacters = 8;
     int minCharacters = 3;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     testCredential.addWord();
@@ -268,7 +266,7 @@ public class CredentialTest {
     int maxCharacters = 8;
     int minCharacters = 3;
     Credential testCredential = new Credential(numWords, maxCharacters, minCharacters, testWordModel);
-    for(int i = 0; i < numWords; i++){
+    for (int i = 0; i < numWords; i++){
       testCredential.addWord();
     }
     testCredential.alternateCase();
